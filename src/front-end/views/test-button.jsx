@@ -1,6 +1,7 @@
 import React from 'react';
-const electron = require('electron');
-const ipcRenderer = electron.ipcRenderer;
+import Electron from 'electron';
+
+const ipcRenderer = Electron.ipcRenderer;
 
 class TestButton extends React.Component {
   handleClick() {
