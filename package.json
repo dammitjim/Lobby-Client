@@ -1,5 +1,5 @@
 {
-  "name": "radio",
+  "name": "fidget",
   "version": "0.1.0",
   "description": "",
   "main": "./src/entry.js",
@@ -31,6 +31,8 @@
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
     "configstore": "^1.4.0",
-    "react": "^0.13.3"
+    "flux": "^2.1.1",
+    "react": "^0.13.3",
+    "react-router": "^1.0.3"
   }
 }

@@ -1,17 +1,9 @@
 const electron = require('electron');
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-
 const Configstore = require('configstore');
 const conf = new Configstore('fidget');
-const auth = require('../../auth.json');
 
-const authOptions = {
-  client_id: auth.client_id,
-  client_secret: auth.client_secret,
-  redirect_url: auth.redirect_url,
-  scope: '',
-};
-
+import authOptions from './api_auth';
 
 /**
  * Handles the callback from Twitch on 'will-navigate'

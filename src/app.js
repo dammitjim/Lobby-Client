@@ -5,6 +5,11 @@ const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 
 import * as auth from './back-end/auth';
+import * as channels from './back-end/channels';
+
+channels.getStreams((data) => {
+  console.log(data);
+});
 
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
