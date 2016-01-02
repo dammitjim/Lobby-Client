@@ -1,3 +1,3 @@
 'use babel';
 require('babel-core/register');
-require('./index.js').start();
+require('./js/master.jsx').start();
