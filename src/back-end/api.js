@@ -1,4 +1,5 @@
-import authOptions from './api_auth';
+import apiAuth from './api_auth';
+import * as userAuth from './auth';
 import https from 'https';
 
 /**
@@ -11,8 +12,11 @@ function applyFilters(filters, path) {
   if (filters === null) {
     return path;
   }
+
   let pathWithFilters = path + '?';
   let initial = true;
+
+  // TODO investigate if this can actually be const?
   for (const key in filters) {
     if ({}.hasOwnProperty.call(filters, key)) {
       if (!initial) {
@@ -26,6 +30,7 @@ function applyFilters(filters, path) {
   return pathWithFilters;
 }
 
+
 /**
  * Generates a request for the specified endpoint with filters
  * @param  String         endpoint - e.g /streams
@@ -37,7 +42,7 @@ function generateRequest(endpoint, filters) {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
     headers: {
-      'client_id': authOptions.client_id,
+      'client_id': apiAuth.client_id,
       'accept': '*/*',
     },
     method: 'GET',
@@ -48,6 +53,21 @@ function generateRequest(endpoint, filters) {
   return req;
 }
 
+
+function generateAuthenticatedRequest(endpoint) {
+  const code = userAuth.code();
+  const req = {
+    host: 'api.twitch.tv',
+    path: '/kraken/' + endpoint,
+    headers: {
+      'client_id': apiAuth.client_id,
+      'oauth_token': code,
+      'accept': '*/*',
+    },
+    method: 'GET',
+  };
+  return req;
+}
 
 /**
  * Fires the request provided
@@ -68,16 +88,18 @@ function fire(req, callback) {
   });
 }
 
+
 /**
  * Retreives streams from the API based on filters
- * @param  object|null  filters  - Hash table filter_key => filter_value (string)
- * @param  function  callback
+ * @param  Object | null  filters  - Hash table filter_key => filter_value (string)
+ * @param  Function       callback
  */
 export function streams(filters, callback) {
   const req = generateRequest('streams', filters);
   console.log(req);
   fire(req, callback);
 }
+
 
 /**
  * Retreives games from the API based on filters
@@ -86,6 +108,12 @@ export function streams(filters, callback) {
  */
 export function games(filters, callback) {
   const req = generateRequest('games/top', filters);
+  console.log(req);
+  fire(req, callback);
+}
+
+export function user(callback) {
+  const req = generateAuthenticatedRequest('user');
   console.log(req);
   fire(req, callback);
 }

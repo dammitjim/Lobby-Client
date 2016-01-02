@@ -7,13 +7,17 @@ const BrowserWindow = electron.BrowserWindow;  // Module to create native browse
 import * as auth from './back-end/auth';
 import * as channels from './back-end/api';
 
-const filters = {
-  'game': 'League of Legends',
-};
+// const filters = {
+//   'game': 'League of Legends',
+// };
+//
+// channels.streams(filters, (data) => {
+//   console.log(data);
+// });
 
-channels.streams(filters, (data) => {
-  console.log(data);
-});
+// channels.user((data) => {
+//   console.log(data);
+// });
 
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
