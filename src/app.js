@@ -5,9 +5,13 @@ const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 
 import * as auth from './back-end/auth';
-import * as channels from './back-end/channels';
+import * as channels from './back-end/api';
 
-channels.getStreams((data) => {
+const filters = {
+  'game': 'League of Legends',
+};
+
+channels.streams(filters, (data) => {
   console.log(data);
 });
 
