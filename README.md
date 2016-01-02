@@ -1,6 +1,6 @@
 # as of yet untitled twitch player
 
-The aim here is to create a native twitch.tv player that has a ton of features that I have yet to define.
+The aim here is to create a "native" twitch.tv player that has a ton of features that I have yet to define.
 
 Also an excuse to mess about with Electron and React/Redux.
 
