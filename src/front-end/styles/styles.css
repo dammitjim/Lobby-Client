@@ -52,7 +52,6 @@ section.fill {
     color: #909090; }
     .native-menu .table .row {
       padding-bottom: 10px;
-      cursor: pointer;
       display: block;
       overflow: auto;
       font-family: "Roboto Condensed", sans-serif;
@@ -73,7 +72,8 @@ section.fill {
         float: left;
         display: block;
         margin-right: 2.35765%;
-        width: 14.70196%; }
+        width: 14.70196%;
+        cursor: pointer; }
         .native-menu .table .row .profile:last-child {
           margin-right: 0; }
         .native-menu .table .row .profile img {
@@ -88,28 +88,36 @@ section.fill {
           margin-right: 0; }
       .native-menu .table .row .channel {
         display: block;
+        cursor: pointer;
         margin-bottom: 5px; }
+        .native-menu .table .row .channel:hover {
+          text-decoration: underline; }
       .native-menu .table .row .game {
         display: block;
         font-size: 13px; }
       .native-menu .table .row .detail {
         position: relative;
-        margin-top: 5px; }
-      .native-menu .table .row .overlay {
-        display: inline-block;
-        background: linear-gradient(to bottom, #0e0e0e 0%, rgba(125, 125, 125, 0) 40%, rgba(125, 125, 125, 0) 60%, #0e0e0e 100%);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 170px; }
-        .native-menu .table .row .overlay .viewers {
-          font-size: 13px;
+        margin-top: 5px;
+        cursor: pointer; }
+        .native-menu .table .row .detail:hover .viewers {
+          opacity: 1; }
+        .native-menu .table .row .detail .overlay {
+          display: inline-block;
+          background: linear-gradient(to bottom, #0e0e0e 0%, rgba(125, 125, 125, 0) 40%, rgba(125, 125, 125, 0) 60%, #0e0e0e 100%);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 170px; }
+        .native-menu .table .row .detail .viewers {
+          font-size: 14px;
           display: block;
           position: absolute;
           left: 10px;
           bottom: 10px;
-          color: #a4a4a4; }
+          color: #c8c8c8;
+          opacity: 0.5;
+          transition: opacity 0.2s ease-in; }
       .native-menu .table .row img {
         display: block;
         z-index: -1;

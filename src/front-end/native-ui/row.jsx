@@ -34,13 +34,13 @@ class Row extends React.Component {
   */
   render() {
     return (
-      <div className="row" key={ this.props.key } onClick={ this.loadBrowser.bind(this) }>
+      <div className="row" key={ this.props.key } >
         <section className="top">
           <div className="profile">
-            <img src={ this.props.logo } />
+            <img src={ this.props.logo } onClick={ this.loadBrowser.bind(this) } />
           </div>
           <div className="information">
-            <span className="channel" >
+            <span className="channel" onClick={ this.loadBrowser.bind(this) } >
               { this.state.channelName }
             </span>
             <span className="game">
@@ -49,7 +49,7 @@ class Row extends React.Component {
           </div>
         </section>
         <section className="detail">
-          <div className="overlay">
+          <div className="overlay" onClick={ this.loadBrowser.bind(this) }>
             <span className="viewers">
               { this.state.viewers } viewers
             </span>
