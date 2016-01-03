@@ -1,4 +1,11 @@
 import menubar from 'menubar';
+import Electron from 'electron';
+import open from 'open';
+
+import * as api from './api';
+
+const ipcMain = Electron.ipcMain;
+
 const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/native-ui/index.html',
   icon: 'file://' + __dirname + '/../front-end/native-ui/icon.icns',
@@ -7,8 +14,18 @@ const bar = menubar({
   showDockIcon: true,
 });
 
+ipcMain.on('open-browser', (event, url) => {
+  open(url);
+});
+
 export default function () {
   bar.on('ready', () => {
-    console.log('Ready');
+  });
+
+  bar.on('after-create-window', () => {
+    bar.window.openDevTools({ detach: true });
+    api.followedStreams(null, (data) => {
+      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(data));
+    });
   });
 }
