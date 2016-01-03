@@ -9,7 +9,7 @@ const ipcMain = Electron.ipcMain;
 const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/native-ui/index.html',
   icon: 'file://' + __dirname + '/../front-end/native-ui/icon.icns',
-  width: 200,
+  width: 320,
   height: 400,
   showDockIcon: true
 });

@@ -1,0 +1,93 @@
+$live-size: 5px
+
+.native-menu
+  margin: 0 !important
+  padding-top: 50px
+  overflow-y: hidden
+  height: 100%
+
+  #title-bar
+    position: fixed
+    top: 0px
+    width: 100%
+    z-index: 10
+    // border-bottom: 1px solid rgb(144, 144, 144)
+    background: -webkit-linear-gradient(top, rgba(250,250,250,1) 0%, rgba(206,206,206,1) 100%)
+    border-top: 1px solid rgba(255,255,255,0.5)
+    border-bottom: 1px solid rgba(0,0,0,0.5)
+    box-shadow: 0px 2px 20px -2px rgba(74,74,74,0.5)
+
+    span
+      text-align: left
+      padding: 10px
+      display: block
+      color: rgb(120, 120, 120)
+
+  #mount
+    overflow-y: auto
+    height: 100%
+    width: 100%
+
+  .table
+    @include fill-parent()
+    font-size: 14px
+    color: rgb(144, 144, 144)
+
+    .row
+      padding-bottom: 10px
+      &::last-child
+        padding-bottom: 0px
+      cursor: pointer
+      display: block
+      overflow: auto
+      @include condensed()
+      @include outer-container
+
+      .top
+        padding: 10px
+        &::after
+          clear: both
+
+      .profile
+        @include span-columns(2)
+        img
+          width: 100%
+          height: auto
+
+      .information
+        @include span-columns(10)
+
+      .channel
+        display: block
+        margin-bottom: 5px
+
+      .game
+        display: block
+        font-size: 13px
+
+      .detail
+        position: relative
+        margin-top: 5px
+
+      .overlay
+        display: inline-block
+        background: linear-gradient(to bottom, rgba(14,14,14, 1.0) 0%, rgba(125, 125, 125, 0.0) 40%, rgba(125, 125, 125, 0.0) 60%, rgba(14,14,14, 1.0) 100%)
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 170px
+
+        .viewers
+          font-size: 13px
+          display: block
+          position: absolute
+          left: 10px
+          bottom: 10px
+          color: rgb(164, 164, 164)
+
+      img
+        display: block
+        z-index: -1
+        width: 100%
+        height: auto

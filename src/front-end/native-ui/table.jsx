@@ -4,6 +4,11 @@ import Row from './row';
 
 const ipcRenderer = Electron.ipcRenderer;
 
+const thumbnailOptions = {
+  width: 320,
+  height: 180
+};
+
 class Table extends React.Component {
 
   /**
@@ -19,17 +24,28 @@ class Table extends React.Component {
     ipcRenderer.on('loaded-followed-streams', (event, data) => {
       const d = JSON.parse(data);
       const s = [];
+      console.log(d.streams);
       // Extract what we need
       for (let i = 0; i < d.streams.length; i++) {
         s.push({
           key: d.streams[i]._id,
           channelName: d.streams[i].channel.display_name,
           viewers: d.streams[i].viewers,
-          url: d.streams[i].channel.url
+          url: d.streams[i].channel.url,
+          preview: this.getStreamPreview(d.streams[i].preview.template),
+          status: d.streams[i].channel.status,
+          game: d.streams[i].game,
+          logo: d.streams[i].channel.logo
         });
       }
       this.setState({ streams: s });
     });
+  }
+
+  getStreamPreview(template) {
+    let newTemplate = template.replace('{width}', thumbnailOptions.width);
+    newTemplate = newTemplate.replace('{height}', thumbnailOptions.height);
+    return newTemplate;
   }
 
   /**
@@ -55,6 +71,10 @@ class Table extends React.Component {
                 channelName={item.channelName}
                 viewers={item.viewers}
                 url={item.url}
+                preview={item.preview}
+                status={item.status}
+                game={item.game}
+                logo={item.logo}
               />
             );
           })
