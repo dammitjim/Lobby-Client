@@ -13,11 +13,11 @@ class Row extends React.Component {
     };
   }
   loadBrowser() {
-    ipcRenderer.send('open-browser', this.state.url);
+    ipcRenderer.send('open-browser', this.props.url);
   }
   render() {
     return (
-      <div className="row">
+      <div className="row" key={ this.props.key }>
         <h4 onClick={ this.loadBrowser.bind(this) }>
           { this.state.channelName }
         </h4>
@@ -30,6 +30,7 @@ class Row extends React.Component {
 }
 
 Row.propTypes = {
+  key: React.PropTypes.string,
   channelName: React.PropTypes.string.isRequired,
   viewers: React.PropTypes.number.isRequired,
   url: React.PropTypes.string.isRequired

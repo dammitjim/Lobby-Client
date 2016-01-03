@@ -16,6 +16,7 @@ class Table extends React.Component {
       const s = [];
       for (let i = 0; i < d.streams.length; i++) {
         s.push({
+          key: d.streams[i]._id,
           channelName: d.streams[i].channel.display_name,
           viewers: d.streams[i].viewers,
           url: d.streams[i].channel.url
@@ -34,6 +35,7 @@ class Table extends React.Component {
           this.state.streams.map((item) => {
             return (
               <Row
+                key={item.key}
                 channelName={item.channelName}
                 viewers={item.viewers}
                 url={item.url}
