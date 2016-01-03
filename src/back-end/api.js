@@ -1,4 +1,7 @@
-import { credentials } from './api_credentials';
+import {
+  credentials
+}
+from './api_credentials';
 import https from 'https';
 
 /**
@@ -42,9 +45,9 @@ function generateRequest(endpoint, filters) {
     path: '/kraken/' + endpoint,
     headers: {
       'client_id': credentials.client_id,
-      'accept': '*/*',
+      'accept': '*/*'
     },
-    method: 'GET',
+    method: 'GET'
   };
 
   // Apply filters if applicable
@@ -67,9 +70,9 @@ function generateAuthenticatedRequest(endpoint, filters) {
       'client_id': credentials.client_id,
       // 'oauth_token': code,
       'Authorization': 'OAuth ' + code,
-      'accept': '*/*',
+      'accept': '*/*'
     },
-    method: 'GET',
+    method: 'GET'
   };
 
   // Apply filters if applicable

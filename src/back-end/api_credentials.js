@@ -7,7 +7,7 @@ const credentials = {
   client_id: auth.client_id,
   client_secret: auth.client_secret,
   redirect_url: auth.redirect_url,
-  access_token: null,
+  access_token: null
 };
 
 if (conf.get('access_token') !== undefined) {
@@ -33,4 +33,6 @@ export function saveAccessToken(token) {
 }
 
 
-export { credentials };
+export {
+  credentials
+};

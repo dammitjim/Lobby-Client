@@ -8,7 +8,7 @@ class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      streams: [],
+      streams: []
     };
 
     ipcRenderer.on('loaded-followed-streams', (event, data) => {
@@ -18,7 +18,7 @@ class Table extends React.Component {
         s.push({
           channelName: d.streams[i].channel.display_name,
           viewers: d.streams[i].viewers,
-          url: d.streams[i].channel.url,
+          url: d.streams[i].channel.url
         });
       }
       this.setState({ streams: s });
@@ -32,7 +32,13 @@ class Table extends React.Component {
       <div className="table">
         {
           this.state.streams.map((item) => {
-            return <Row channelName={item.channelName} viewers={item.viewers} url={item.url}/>;
+            return (
+              <Row
+                channelName={item.channelName}
+                viewers={item.viewers}
+                url={item.url}
+              />
+            );
           })
         }
       </div>

@@ -11,19 +11,20 @@ const bar = menubar({
   icon: 'file://' + __dirname + '/../front-end/native-ui/icon.icns',
   width: 200,
   height: 400,
-  showDockIcon: true,
+  showDockIcon: true
 });
 
 ipcMain.on('open-browser', (event, url) => {
   open(url);
 });
 
-export default function () {
-  bar.on('ready', () => {
-  });
+export default function() {
+  bar.on('ready', () => {});
 
   bar.on('after-create-window', () => {
-    bar.window.openDevTools({ detach: true });
+    bar.window.openDevTools({
+      detach: true
+    });
     api.followedStreams(null, (data) => {
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(data));
     });

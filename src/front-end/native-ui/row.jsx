@@ -9,7 +9,7 @@ class Row extends React.Component {
     this.state = {
       channelName: props.channelName,
       viewers: props.viewers,
-      url: props.url,
+      url: props.url
     };
   }
   loadBrowser() {
@@ -18,8 +18,12 @@ class Row extends React.Component {
   render() {
     return (
       <div className="row">
-        <h4 onClick={ this.loadBrowser.bind(this) }>{ this.state.channelName }</h4>
-        <h5>Viewers: { this.state.viewers }</h5>
+        <h4 onClick={ this.loadBrowser.bind(this) }>
+          { this.state.channelName }
+        </h4>
+        <h5>
+          Viewers: { this.state.viewers }
+        </h5>
       </div>
     );
   }
@@ -28,7 +32,7 @@ class Row extends React.Component {
 Row.propTypes = {
   channelName: React.PropTypes.string.isRequired,
   viewers: React.PropTypes.number.isRequired,
-  url: React.PropTypes.string.isRequired,
+  url: React.PropTypes.string.isRequired
 };
 
 export default Row;

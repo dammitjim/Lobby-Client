@@ -1,9 +1,12 @@
 import https from 'https';
 import querystring from 'querystring';
 import electron from 'electron';
-import { saveAccessToken, credentials } from './api_credentials';
+import {
+  saveAccessToken, credentials
+}
+from './api_credentials';
 
-const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
 const scopes = ['user_read', 'channel_read'];
 
 console.log(credentials);
@@ -24,7 +27,7 @@ function handleAuthCallback(url, callback) {
     client_secret: credentials.client_secret,
     grant_type: 'authorization_code',
     redirect_uri: credentials.redirect_url,
-    code: c,
+    code: c
   });
 
   // Structure of the request
@@ -34,9 +37,9 @@ function handleAuthCallback(url, callback) {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData),
-      'accept': '*/*',
+      'accept': '*/*'
     },
-    method: 'POST',
+    method: 'POST'
   };
 
   // The request itself
@@ -63,7 +66,12 @@ export function InitiateAuthFlow() {
   // Only allow if there is not already an auth_code set
   if (credentials.access_token === null) {
     // Construct a new window that sends the user to the twitch oauth page
-    let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false });
+    let authWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      show: false,
+      'node-integration': false
+    });
 
     let authURL = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code';
     // Add scopes (the permissions being requested)
