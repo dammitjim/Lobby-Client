@@ -102,12 +102,3 @@ export function InitiateAuthFlow() {
 export function IsAuthenticated() {
   return (credentials.access_token !== null);
 }
-
-
-/**
- * Get the active authentication token from the configuration
- * @return String
- */
-export function code() {
-  return credentials.access_token;
-}
