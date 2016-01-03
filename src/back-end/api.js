@@ -1,4 +1,4 @@
-import credentials from './api_credentials';
+import { credentials } from './api_credentials';
 import https from 'https';
 
 /**
@@ -8,7 +8,7 @@ import https from 'https';
  * @return String                  - URL with new filters
  */
 function applyFilters(filters, path) {
-  if (filters === null) {
+  if (filters === null || filters === undefined) {
     return path;
   }
 
@@ -58,18 +58,22 @@ function generateRequest(endpoint, filters) {
  * @param  String endpoint
  * @return Object
  */
-function generateAuthenticatedRequest(endpoint) {
+function generateAuthenticatedRequest(endpoint, filters) {
   const code = credentials.access_token;
   const req = {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
     headers: {
       'client_id': credentials.client_id,
-      'oauth_token': code,
+      // 'oauth_token': code,
+      'Authorization': 'OAuth ' + code,
       'accept': '*/*',
     },
     method: 'GET',
   };
+
+  // Apply filters if applicable
+  req.path = applyFilters(filters, req.path);
   return req;
 }
 
@@ -124,6 +128,18 @@ export function games(filters, callback) {
  */
 export function user(callback) {
   const req = generateAuthenticatedRequest('user');
+  console.log(req);
+  fire(req, callback);
+}
+
+
+/**
+ * Retreives the streams that the user follos
+ * @param  Object | null  filters  - Hash table filter_key => filter_value (string)
+ * @param  Function       callback
+ */
+export function followedStreams(filters, callback) {
+  const req = generateAuthenticatedRequest('streams/followed', filters);
   console.log(req);
   fire(req, callback);
 }

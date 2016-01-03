@@ -1,10 +1,19 @@
 'use babel';
 import electron from 'electron';
 import * as auth from './back-end/auth';
+import * as api from './back-end/api';
 
 const app = electron.app;  // Module to control application life.
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+
+// api.user((data) => {
+//   console.log(data);
+// });
+
+api.followedStreams(null, (data) => {
+  console.log(data);
+});
 
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
