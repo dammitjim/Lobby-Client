@@ -14,6 +14,7 @@ const bar = menubar({
   showDockIcon: true
 });
 
+// Message sent from the renderer process to open the twitch stream in native browser
 ipcMain.on('open-browser', (event, url) => {
   open(url);
 });

@@ -5,6 +5,11 @@ import Row from './row';
 const ipcRenderer = Electron.ipcRenderer;
 
 class Table extends React.Component {
+
+  /**
+   * constructor, also listens for message from main thread that streams are loaded
+   * @param  Object props
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +19,7 @@ class Table extends React.Component {
     ipcRenderer.on('loaded-followed-streams', (event, data) => {
       const d = JSON.parse(data);
       const s = [];
+      // Extract what we need
       for (let i = 0; i < d.streams.length; i++) {
         s.push({
           key: d.streams[i]._id,
@@ -25,9 +31,19 @@ class Table extends React.Component {
       this.setState({ streams: s });
     });
   }
+
+  /**
+   * Sets the current streams
+   * TODO is there a use case for this?
+   * @param  Object updatedStreams
+   */
   loadStreams(updatedStreams) {
     this.setState({ streams: updatedStreams });
   }
+
+  /**
+   * render
+   */
   render() {
     return (
       <div className="table">
