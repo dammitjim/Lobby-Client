@@ -1,34 +1,34 @@
-const electron = require('electron');
-const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-const Configstore = require('configstore');
-const conf = new Configstore('fidget');
-const querystring = require('querystring');
+import https from 'https';
+import querystring from 'querystring';
+import electron from 'electron';
+import { saveAccessToken, credentials } from './api_credentials';
 
+const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 const scopes = ['user_read', 'channel_read'];
 
-console.log(conf.get('auth_code'));
-
-import authOptions from './api_auth';
-import https from 'https';
+console.log(credentials);
 
 /**
  * Handles the callback from Twitch on 'will-navigate'
- * @param  string url
- * @return void
+ * @param  String   - url
+ * @param  Function - callback
  */
 function handleAuthCallback(url, callback) {
+  // Extract the authentication code
   const raw = /code=([^&]*)/.exec(url) || null;
   const c = (raw && raw.length > 1) ? raw[1] : null;
 
+  // Data to be sent when requestion an auth token
   const postData = querystring.stringify({
-    client_id: authOptions.client_id,
-    client_secret: authOptions.client_secret,
+    client_id: credentials.client_id,
+    client_secret: credentials.client_secret,
     grant_type: 'authorization_code',
-    redirect_uri: authOptions.redirect_url,
+    redirect_uri: credentials.redirect_url,
     code: c,
   });
 
-  const reqData = {
+  // Structure of the request
+  const reqMeta = {
     host: 'api.twitch.tv',
     path: '/kraken/oauth2/token',
     headers: {
@@ -39,7 +39,8 @@ function handleAuthCallback(url, callback) {
     method: 'POST',
   };
 
-  const req = https.request(reqData, (response) => {
+  // The request itself
+  const req = https.request(reqMeta, (response) => {
     let data = '';
     // Load data into chunks and append to the data
     response.on('data', (chunk) => {
@@ -52,7 +53,6 @@ function handleAuthCallback(url, callback) {
 
   req.write(postData);
   req.end();
-  // conf.set('auth_code', c);
 }
 
 
@@ -60,19 +60,27 @@ function handleAuthCallback(url, callback) {
  * Launches a twitch authentication window
  */
 export function InitiateAuthFlow() {
-  if (conf.get('auth_code') === undefined) {
+  // Only allow if there is not already an auth_code set
+  if (credentials.access_token === null) {
+    // Construct a new window that sends the user to the twitch oauth page
     let authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false });
-    let authURL = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code';
-    authURL += ('&scope=' + scopes.join(' '));
 
-    authURL = authURL + '&client_id=' + authOptions.client_id + '&redirect_uri=' + authOptions.redirect_url;
+    let authURL = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code';
+    // Add scopes (the permissions being requested)
+    authURL += ('&scope=' + scopes.join(' '));
+    authURL = authURL + '&client_id=' + credentials.client_id + '&redirect_uri=' + credentials.redirect_url;
+
     authWindow.loadURL(authURL);
     authWindow.show();
 
+    // When the window is due to navigate
     authWindow.webContents.on('will-navigate', (e, url) => {
+      // We want to intercept the callback from twitch
       if (url.slice(0, 16) === 'http://localhost') {
+        // Gets authentication token
         handleAuthCallback(url, (data) => {
-          conf.set('auth_code', data.access_token);
+          // Set the authentication token in the local storage
+          saveAccessToken(data.access_token);
         });
         e.preventDefault();
         authWindow.close();
@@ -83,18 +91,23 @@ export function InitiateAuthFlow() {
       authWindow = null;
     }, false);
   } else {
-    console.log('Auth code already defined as: ' + conf.get('auth_code'));
+    console.log('Auth code already defined as: ' + credentials.access_token);
   }
 }
 
 
 /**
- * Checks to see if an authentication code has been set for the active session
+ * Checks to see if an authentication token has been set for the active session
  */
 export function IsAuthenticated() {
-  return (conf.get('auth_code') === undefined) ? false : true;
+  return (credentials.access_token !== null);
 }
 
+
+/**
+ * Get the active authentication token from the configuration
+ * @return String
+ */
 export function code() {
-  return conf.get('auth_code');
+  return credentials.access_token;
 }

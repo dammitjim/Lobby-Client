@@ -1,23 +1,10 @@
 'use babel';
-const electron = require('electron');
+import electron from 'electron';
+import * as auth from './back-end/auth';
+
 const app = electron.app;  // Module to control application life.
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-
-import * as auth from './back-end/auth';
-import * as channels from './back-end/api';
-
-// const filters = {
-//   'game': 'League of Legends',
-// };
-//
-// channels.streams(filters, (data) => {
-//   console.log(data);
-// });
-
-// channels.user((data) => {
-//   console.log(data);
-// });
 
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
@@ -25,7 +12,12 @@ export function start() {
   let mainWindow = null;
 
   // Report crashes to our server.
-  electron.crashReporter.start();
+  electron.crashReporter.start({
+    productName: 'Twitch Viewer',
+    companyName: 'thisisjimah',
+    submitURL: 'http://dammitjim.co.uk/crash',
+    autoSubmit: false,
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -41,8 +33,6 @@ export function start() {
   app.on('ready', () => {
     // Create the browser window.
     mainWindow = new BrowserWindow({ width: 800, height: 600 });
-
-    console.log(process.version);
 
     // and load the index.html of the app.
     mainWindow.loadURL('file://' + __dirname + '/front-end/index.html');

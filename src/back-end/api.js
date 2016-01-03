@@ -1,5 +1,4 @@
-import apiAuth from './api_auth';
-import * as userAuth from './auth';
+import credentials from './api_credentials';
 import https from 'https';
 
 /**
@@ -42,7 +41,7 @@ function generateRequest(endpoint, filters) {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
     headers: {
-      'client_id': apiAuth.client_id,
+      'client_id': credentials.client_id,
       'accept': '*/*',
     },
     method: 'GET',
@@ -54,13 +53,18 @@ function generateRequest(endpoint, filters) {
 }
 
 
+/**
+ * Generates a request and passes the access token with it
+ * @param  String endpoint
+ * @return Object
+ */
 function generateAuthenticatedRequest(endpoint) {
-  const code = userAuth.code();
+  const code = credentials.access_token;
   const req = {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
     headers: {
-      'client_id': apiAuth.client_id,
+      'client_id': credentials.client_id,
       'oauth_token': code,
       'accept': '*/*',
     },
@@ -68,6 +72,7 @@ function generateAuthenticatedRequest(endpoint) {
   };
   return req;
 }
+
 
 /**
  * Fires the request provided
@@ -112,6 +117,11 @@ export function games(filters, callback) {
   fire(req, callback);
 }
 
+
+/**
+ * Retreives the users information based on the active token
+ * @param  Function callback
+ */
 export function user(callback) {
   const req = generateAuthenticatedRequest('user');
   console.log(req);
