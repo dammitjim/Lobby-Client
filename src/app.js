@@ -1,15 +1,14 @@
 'use babel';
 import electron from 'electron';
+
 import * as auth from './back-end/auth';
 import * as api from './back-end/api';
+
+import menu from './back-end/menu';
 
 const app = electron.app;  // Module to control application life.
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-
-// api.user((data) => {
-//   console.log(data);
-// });
 
 api.followedStreams(null, (data) => {
   console.log(data);
@@ -19,6 +18,7 @@ export function start() {
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
   let mainWindow = null;
+  menu();
 
   // Report crashes to our server.
   electron.crashReporter.start({

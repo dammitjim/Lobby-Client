@@ -22,6 +22,8 @@
     "babel-preset-react": "^6.3.13",
     "configstore": "^1.4.0",
     "flux": "^2.1.1",
+    "history": "^1.17.0",
+    "menubar": "^3.0.0",
     "react": "^0.13.3",
     "react-router": "^1.0.3"
   }
