@@ -3,6 +3,7 @@ import React from 'react';
 
 const ipcRenderer = Electron.ipcRenderer;
 
+// TODO Channel & Game links
 class Row extends React.Component {
 
   /**

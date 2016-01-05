@@ -14,20 +14,43 @@ const bar = menubar({
   showDockIcon: true
 });
 
+
 // Message sent from the renderer process to open the twitch stream in native browser
 ipcMain.on('open-browser', (event, url) => {
   open(url);
 });
 
+let polledData = '';
+
+/**
+ * Polls the api and sends the data to the target
+ * @param  BrowserWindow target
+ */
+function poll(target) {
+  api.followedStreams(null, (data) => {
+    polledData = JSON.stringify(data);
+    if (target.window !== undefined) {
+      if (target.window.webContents !== undefined) {
+        bar.window.webContents.send('loaded-followed-streams', polledData);
+      }
+    }
+  });
+}
+
 export default function() {
-  bar.on('ready', () => {});
+  bar.on('ready', () => {
+    poll(bar);
+    setInterval(() => {
+      poll(bar);
+    }, 5000);
+  });
 
   bar.on('after-create-window', () => {
-    bar.window.openDevTools({
-      detach: true
-    });
-    api.followedStreams(null, (data) => {
-      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(data));
-    });
+    setTimeout(() => {
+      bar.window.webContents.send('loaded-followed-streams', polledData);
+    }, 500);
+    // bar.window.openDevTools({
+    //   detach: true
+    // });
   });
 }
