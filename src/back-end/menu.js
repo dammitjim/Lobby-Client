@@ -1,5 +1,6 @@
-import menubar from 'menubar';
 import Electron from 'electron';
+
+import menubar from 'menubar';
 import open from 'open';
 
 import * as api from './api';
@@ -49,8 +50,12 @@ export default function() {
     setTimeout(() => {
       bar.window.webContents.send('loaded-followed-streams', polledData);
     }, 500);
-    // bar.window.openDevTools({
-    //   detach: true
-    // });
+    bar.window.openDevTools({
+      detach: true
+    });
+  });
+
+  bar.on('after-close', () => {
+    console.log('Menubar closed, recreating on next show');
   });
 }

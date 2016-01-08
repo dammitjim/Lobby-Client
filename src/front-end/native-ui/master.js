@@ -1,5 +1,6 @@
 import React from 'react';
-import Table from './table';
+import Table from './components/table';
+
 export function start() {
   React.render(
       <Table />,

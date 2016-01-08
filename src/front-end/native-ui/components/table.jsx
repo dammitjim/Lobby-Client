@@ -20,11 +20,10 @@ class Table extends React.Component {
     this.state = {
       streams: []
     };
-
     ipcRenderer.on('loaded-followed-streams', (event, data) => {
       const d = JSON.parse(data);
       const s = [];
-      console.log(d.streams);
+
       // Extract what we need
       for (let i = 0; i < d.streams.length; i++) {
         s.push({
