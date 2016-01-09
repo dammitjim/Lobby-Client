@@ -2,7 +2,7 @@ import React from 'react';
 import Table from './components/table';
 import { Provider } from 'react-redux';
 
-export default class Application extends React.Component {
+class Application extends React.Component {
   render() {
     return (
       <Provider store={ this.props.store }>
@@ -11,3 +11,13 @@ export default class Application extends React.Component {
     );
   }
 }
+
+/**
+* Validates the properties to ensure nothing is missing
+* @type Object
+*/
+Application.propTypes = {
+  store: React.PropTypes.object.isRequired
+};
+
+export default Application;

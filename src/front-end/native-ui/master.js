@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Electron from 'electron'
-const ipcRenderer = Electron.ipcRenderer
+import Electron from 'electron';
+const ipcRenderer = Electron.ipcRenderer;
 
 import createStore from './create-store';
 import Application from './app';

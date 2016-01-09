@@ -25,7 +25,7 @@ export function start() {
     productName: 'Twitch Viewer',
     companyName: 'thisisjimah',
     submitURL: 'http://dammitjim.co.uk/crash',
-    autoSubmit: false,
+    autoSubmit: false
   });
 
   // Quit when all windows are closed.
