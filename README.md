@@ -1,4 +1,4 @@
-# as of yet untitled twitch player
+# as of yet untitled twitch player [![Build Status](https://travis-ci.org/jimah/ElectronTwitchPrototype.svg)](https://travis-ci.org/jimah/ElectronTwitchPrototype)
 
 The aim here is to create a "native" twitch.tv player that has a ton of features that I have yet to define.
 
