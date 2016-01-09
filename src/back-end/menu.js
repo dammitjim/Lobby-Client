@@ -11,7 +11,7 @@ const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/native-ui/index.html',
   icon: 'file://' + __dirname + '/../front-end/native-ui/icon.icns',
   width: 320,
-  height: 400,
+  height: 600,
   showDockIcon: true
 });
 

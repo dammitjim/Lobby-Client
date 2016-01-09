@@ -7,23 +7,6 @@ const ipcRenderer = Electron.ipcRenderer;
 class Row extends React.Component {
 
   /**
-  * constructor
-  * @param  Object props - Properties being passed in from Table
-  */
-  constructor(props) {
-    super(props);
-    this.state = {
-      channelName: props.channelName,
-      viewers: props.viewers,
-      url: props.url,
-      preview: props.preview,
-      status: props.status,
-      game: props.game,
-      logo: props.logo
-    };
-  }
-
-  /**
   * Sends a message to the main process with the stream url to open it in the native browser
   */
   loadBrowser() {
@@ -42,20 +25,20 @@ class Row extends React.Component {
           </div>
           <div className="information">
             <span className="channel" onClick={ this.loadBrowser.bind(this) } >
-              { this.state.channelName }
+              { this.props.channelName }
             </span>
             <span className="game">
-              Playing { this.state.game }
+              Playing { this.props.game }
             </span>
           </div>
         </section>
         <section className="detail">
           <div className="overlay" onClick={ this.loadBrowser.bind(this) }>
             <span className="viewers">
-              { this.state.viewers } viewers
+              { this.props.viewers } viewers
             </span>
           </div>
-          <img src={ this.state.preview } title={ this.state.status }/>
+          <img src={ this.props.preview } title={ this.props.status }/>
         </section>
       </div>
     );
