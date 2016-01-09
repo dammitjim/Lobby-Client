@@ -1,8 +1,16 @@
 {
   "extends": "airbnb",
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "plugins": [
+    "react",
+  ],
   "rules":{
       "no-console": 0,
       "comma-dangle": [2, "never"],
       "space-before-function-paren": [2, "never"],
+
+      "react/display-name": 1,
   }
 }

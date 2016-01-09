@@ -2,13 +2,16 @@ import React from 'react';
 import Row from './row';
 import { connect } from 'react-redux';
 
+const displayName = 'Table';
+// TODO propTypes
+// const propTypes = {};
+
 class Table extends React.Component {
 
   /**
    * render
    */
   render() {
-    console.log(this.props.store);
     return (
       <div className="table">
         {
@@ -31,6 +34,8 @@ class Table extends React.Component {
     );
   }
 }
+
+Table.displayName = displayName;
 
 const mapStateToProps = (state) => {
   return {

@@ -3,6 +3,18 @@ import React from 'react';
 
 const ipcRenderer = Electron.ipcRenderer;
 
+const displayName = 'Row';
+const propTypes = {
+  key: React.PropTypes.string,
+  channelName: React.PropTypes.string.isRequired,
+  viewers: React.PropTypes.number.isRequired,
+  url: React.PropTypes.string.isRequired,
+  preview: React.PropTypes.string,
+  status: React.PropTypes.string.isRequired,
+  game: React.PropTypes.string.isRequired,
+  logo: React.PropTypes.string.isRequired
+};
+
 // TODO Channel & Game links
 class Row extends React.Component {
 
@@ -49,15 +61,7 @@ class Row extends React.Component {
 * Validates the properties to ensure nothing is missing
 * @type Object
 */
-Row.propTypes = {
-  key: React.PropTypes.string,
-  channelName: React.PropTypes.string.isRequired,
-  viewers: React.PropTypes.number.isRequired,
-  url: React.PropTypes.string.isRequired,
-  preview: React.PropTypes.string,
-  status: React.PropTypes.string.isRequired,
-  game: React.PropTypes.string.isRequired,
-  logo: React.PropTypes.string.isRequired
-};
+Row.propTypes = propTypes;
+Row.displayName = displayName;
 
 export default Row;

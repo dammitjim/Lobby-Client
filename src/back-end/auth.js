@@ -37,7 +37,7 @@ function handleAuthCallback(url, callback) {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData),
-      'accept': '*/*'
+      accept: '*/*'
     },
     method: 'POST'
   };
@@ -76,7 +76,9 @@ export function InitiateAuthFlow() {
     let authURL = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code';
     // Add scopes (the permissions being requested)
     authURL += ('&scope=' + scopes.join(' '));
-    authURL = authURL + '&client_id=' + credentials.client_id + '&redirect_uri=' + credentials.redirect_url;
+    authURL = authURL
+      + '&client_id=' + credentials.client_id
+      + '&redirect_uri=' + credentials.redirect_url;
 
     authWindow.loadURL(authURL);
     authWindow.show();

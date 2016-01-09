@@ -44,8 +44,8 @@ function generateRequest(endpoint, filters) {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
     headers: {
-      'client_id': credentials.client_id,
-      'accept': '*/*'
+      client_id: credentials.client_id,
+      accept: '*/*'
     },
     method: 'GET'
   };
@@ -67,10 +67,10 @@ function generateAuthenticatedRequest(endpoint, filters) {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
     headers: {
-      'client_id': credentials.client_id,
+      client_id: credentials.client_id,
       // 'oauth_token': code,
-      'Authorization': 'OAuth ' + code,
-      'accept': '*/*'
+      Authorization: 'OAuth ' + code,
+      accept: '*/*'
     },
     method: 'GET'
   };
