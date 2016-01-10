@@ -63,6 +63,7 @@ $table-text-color: #909090;
   }
 
   .top {
+    overflow: auto;
     padding: 10px;
 
     &::after {
@@ -109,7 +110,6 @@ $table-text-color: #909090;
         opacity: 1;
       }
     }
-
 
     .overlay {
       background: linear-gradient(to bottom, $stream-overlay-gradient-1 0%, $stream-overlay-gradient-2 40%, $stream-overlay-gradient-2 60%, $stream-overlay-gradient-1 100%);
