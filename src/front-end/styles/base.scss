@@ -1,0 +1,16 @@
+$max-width: 100%;
+$visual-grid: true;
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+@mixin condensed {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}

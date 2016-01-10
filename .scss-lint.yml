@@ -1,0 +1,7 @@
+scss_files: 'src/front-end/styles/**/*.scss'
+exclude: 'src/front-end/styles/vendor/**'
+linters:
+  IdSelector:
+    enabled: false
+  NestingDepth:
+    max_depth: 4
