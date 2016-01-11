@@ -1,4 +1,4 @@
-Lobby [![Build Status](https://travis-ci.org/jimah/ElectronTwitchPrototype.svg)](https://travis-ci.org/jimah/ElectronTwitchPrototype)
+# Lobby [![Build Status](https://travis-ci.org/jimah/ElectronTwitchPrototype.svg)](https://travis-ci.org/jimah/ElectronTwitchPrototype)
 
 A Twitch player based on Electron. Currently a work in progress.
 
