@@ -1,16 +1,16 @@
-# as of yet untitled twitch player [![Build Status](https://travis-ci.org/jimah/ElectronTwitchPrototype.svg)](https://travis-ci.org/jimah/ElectronTwitchPrototype)
+Lobby [![Build Status](https://travis-ci.org/jimah/ElectronTwitchPrototype.svg)](https://travis-ci.org/jimah/ElectronTwitchPrototype)
 
-The aim here is to create a "native" twitch.tv player that has a ton of features that I have yet to define.
+A Twitch player based on Electron. Currently a work in progress.
 
-Also an excuse to mess about with Electron and React/Redux.
+## Features
 
-## TODO
+* Parallel stream viewing.
+* Chat integration per stream.
+* Native menubar integration (followed streams).
+* Desktop notifications when streamers go live.
 
-* Come up with a cool hipster name for the app
-* CSS/Sass folder structure (Are we SMACSSing this bitch?)
-* Embedded twitch streams
-* Channel list per game
-* Multiple embedded streams
-* Chat
-* Load users follow list, show followed channel status in native menu
-* Notifications when followed users start streaming
+## How to use
+
+* 'npm install'
+* 'npm start'
+* You will need to log in with your twitch account to access features such as followed streams.
