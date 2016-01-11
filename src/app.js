@@ -2,22 +2,19 @@
 import electron from 'electron';
 
 import * as auth from './back-end/auth';
-// import * as api from './back-end/api';
-
 import menu from './back-end/menu';
+import log from './back-end/logging';
 
 const app = electron.app;  // Module to control application life.
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 
-// api.followedStreams(null, (data) => {
-//   console.log(data);
-// });
-
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
   let mainWindow = null;
+
+  log.info('Creating menubar');
   menu();
 
   // Report crashes to our server.
@@ -40,6 +37,8 @@ export function start() {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
+    log.info('Creating main browser window');
+
     // Create the browser window.
     mainWindow = new BrowserWindow({ width: 800, height: 600 });
 

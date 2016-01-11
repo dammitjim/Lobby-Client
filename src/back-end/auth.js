@@ -1,15 +1,13 @@
 import https from 'https';
 import querystring from 'querystring';
 import electron from 'electron';
-import {
-  saveAccessToken, credentials
-}
-from './api_credentials';
+import { saveAccessToken, credentials } from './api_credentials';
+import log from './logging';
 
 const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
 const scopes = ['user_read', 'channel_read'];
 
-console.log(credentials);
+log.info('Api credentials', credentials);
 
 /**
  * Handles the callback from Twitch on 'will-navigate'

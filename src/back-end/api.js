@@ -2,6 +2,7 @@ import {
   credentials
 }
 from './api_credentials';
+import log from './logging';
 import https from 'https';
 
 /**
@@ -18,7 +19,6 @@ function applyFilters(filters, path) {
   let pathWithFilters = path + '?';
   let initial = true;
 
-  // TODO investigate if this can actually be const?
   for (const key in filters) {
     if ({}.hasOwnProperty.call(filters, key)) {
       if (!initial) {
@@ -39,7 +39,7 @@ function applyFilters(filters, path) {
  * @param  Object | null  filters  - Hash table filter_key => filter_value (string)
  * @return Object
  */
-function generateRequest(endpoint, filters) {
+function generateRequest(endpoint, filters, requiresAuth = false) {
   const req = {
     host: 'api.twitch.tv',
     path: '/kraken/' + endpoint,
@@ -50,36 +50,14 @@ function generateRequest(endpoint, filters) {
     method: 'GET'
   };
 
-  // Apply filters if applicable
-  req.path = applyFilters(filters, req.path);
-  return req;
-}
-
-
-/**
- * Generates a request and passes the access token with it
- * @param  String endpoint
- * @return Object
- */
-function generateAuthenticatedRequest(endpoint, filters) {
-  const code = credentials.access_token;
-  const req = {
-    host: 'api.twitch.tv',
-    path: '/kraken/' + endpoint,
-    headers: {
-      client_id: credentials.client_id,
-      // 'oauth_token': code,
-      Authorization: 'OAuth ' + code,
-      accept: '*/*'
-    },
-    method: 'GET'
-  };
+  if (requiresAuth === true) {
+    req.headers.Authorization = 'Oauth ' + credentials.access_token;
+  }
 
   // Apply filters if applicable
   req.path = applyFilters(filters, req.path);
   return req;
 }
-
 
 /**
  * Fires the request provided
@@ -87,62 +65,41 @@ function generateAuthenticatedRequest(endpoint, filters) {
  * @param  Function callback
  */
 function fire(req, callback) {
-  https.get(req, (response) => {
-    let data = '';
-    // Load data into chunks and append to the data
-    response.on('data', (chunk) => {
-      data += chunk;
+  if (req.error !== undefined) {
+    callback(Error(req.error), undefined);
+  } else {
+    log.info('Firing request', req);
+    https.get(req, (response) => {
+      let data = '';
+      // Load data into chunks and append to the data
+      response.on('data', (chunk) => {
+        data += chunk;
+      });
+      response.on('end', () => {
+        // Send the parsed object to the callback
+        callback(undefined, JSON.parse(data));
+      });
     });
-    response.on('end', () => {
-      // Send the parsed object to the callback
-      callback(JSON.parse(data));
-    });
-  });
+  }
 }
 
+export function call() {
+  const callback = arguments[arguments.length - 1];
 
-/**
- * Retreives streams from the API based on filters
- * @param  Object | null  filters  - Hash table filter_key => filter_value (string)
- * @param  Function       callback
- */
-export function streams(filters, callback) {
-  const req = generateRequest('streams', filters);
-  console.log(req);
-  fire(req, callback);
-}
+  // Not following format required
+  if (arguments.length < 2) {
+    fire({ error: 'First argument should be endpoint, last argument should be callback' }, callback);
+  }
 
+  let req = generateRequest(arguments[0]);
 
-/**
- * Retreives games from the API based on filters
- * @param  Object | null  filters  - Hash table filter_key => filter_value (string)
- * @param  Function       callback
- */
-export function games(filters, callback) {
-  const req = generateRequest('games/top', filters);
-  console.log(req);
-  fire(req, callback);
-}
+  // Middlewares have been supplied
+  if (arguments.length > 2) {
+    const middlewares = [].slice.call(arguments, 1, arguments.length - 1);
+    for (let i = 0; i < middlewares.length; i++) {
+      req = middlewares[i](req);
+    }
+  }
 
-
-/**
- * Retreives the users information based on the active token
- * @param  Function callback
- */
-export function user(callback) {
-  const req = generateAuthenticatedRequest('user');
-  console.log(req);
-  fire(req, callback);
-}
-
-
-/**
- * Retreives the streams that the user follos
- * @param  Object | null  filters  - Hash table filter_key => filter_value (string)
- * @param  Function       callback
- */
-export function followedStreams(filters, callback) {
-  const req = generateAuthenticatedRequest('streams/followed', filters);
-  console.log(req);
   fire(req, callback);
 }

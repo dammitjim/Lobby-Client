@@ -8,7 +8,8 @@
     "url": "https://github.com/jimah/ElectronTwitchPrototype"
   },
   "scripts": {
-    "test": "eslint . && scss-lint"
+    "test": "eslint . && scss-lint",
+    "start": "electron . | bunyan"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "babel": "^6.3.26",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "bunyan": "^1.5.1",
     "configstore": "^1.4.0",
     "flux": "^2.1.1",
     "history": "^1.17.0",
