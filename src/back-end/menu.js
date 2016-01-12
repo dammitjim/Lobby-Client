@@ -4,6 +4,7 @@ import menubar from 'menubar';
 import open from 'open';
 import { authenticate } from './middlewares';
 import log from './logging';
+import { notify } from './notifications';
 
 import * as api from './api';
 
@@ -27,16 +28,24 @@ ipcMain.on('open-browser', (event, url) => {
 
 let polledData = '';
 
+function checkNotifications(original, updated) {
+  notify('This is only a test', 'This is only a message', 'http://healthyceleb.com/wp-content/uploads/2013/08/Dwayne-Johnson.jpg', (notifierObject, options) => {
+    log.info('Notifier Object', notifierObject);
+    log.info('Options', options);
+  });
+}
+
 /**
  * Polls the api and sends the data to the target
  * @param  BrowserWindow target
  */
 function poll(target) {
   api.call('streams/followed', authenticate, (err, data) => {
-    polledData = JSON.stringify(data);
+    checkNotifications(polledData, data);
+    polledData = data;
     if (target.window !== undefined) {
       if (target.window.webContents !== undefined) {
-        bar.window.webContents.send('loaded-followed-streams', polledData);
+        bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
       }
     }
   });
@@ -53,7 +62,7 @@ export default function() {
   bar.on('after-create-window', () => {
     setTimeout(() => {
       log.info('Sending loaded-followed-streams to menubar');
-      bar.window.webContents.send('loaded-followed-streams', polledData);
+      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
     }, 1000);
     bar.window.openDevTools({
       detach: true

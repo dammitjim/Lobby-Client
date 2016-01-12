@@ -31,6 +31,7 @@
     "flux": "^2.1.1",
     "history": "^1.17.0",
     "menubar": "^3.0.0",
+    "node-notifier": "^4.4.0",
     "open": "0.0.5",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
