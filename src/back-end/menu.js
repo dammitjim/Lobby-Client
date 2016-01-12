@@ -29,6 +29,7 @@ ipcMain.on('open-browser', (event, url) => {
 let polledData = '';
 
 function checkNotifications(original, updated) {
+  log.info(updated);
   notify('This is only a test', 'This is only a message', 'http://healthyceleb.com/wp-content/uploads/2013/08/Dwayne-Johnson.jpg', (notifierObject, options) => {
     log.info('Notifier Object', notifierObject);
     log.info('Options', options);
