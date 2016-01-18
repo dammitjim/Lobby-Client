@@ -1,8 +1,8 @@
 import https from 'https';
 import querystring from 'querystring';
 import electron from 'electron';
-import { saveAccessToken, credentials } from './api_credentials';
-import log from './logging';
+import { saveAccessToken, credentials } from './credentials';
+import log from '../util/logging';
 
 const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
 const scopes = ['user_read', 'channel_read'];

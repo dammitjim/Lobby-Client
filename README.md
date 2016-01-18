@@ -14,3 +14,4 @@ A Twitch player based on Electron. Currently a work in progress.
 * 'npm install'
 * 'npm start'
 * You will need to log in with your twitch account to access features such as followed streams.
+* You will need an auth.json in your root, 3 keys: ["client_id", "client_secret", "redirect_url"], you can get these from the twitch developer tools.

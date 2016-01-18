@@ -1,8 +1,5 @@
-import {
-  credentials
-}
-from './api_credentials';
-import log from './logging';
+import { credentials } from './api/credentials';
+import log from './util/logging';
 import https from 'https';
 
 /**

@@ -1,6 +1,6 @@
 import Configstore from 'configstore';
 
-const auth = require('../../auth.json');
+const auth = require('../../../auth.json');
 const conf = new Configstore('fidget');
 
 const credentials = {

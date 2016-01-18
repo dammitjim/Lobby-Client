@@ -2,8 +2,10 @@ import Electron from 'electron';
 
 import menubar from 'menubar';
 import open from 'open';
-import { authenticate } from './middlewares';
-import log from './logging';
+
+import { authenticate } from './util/middlewares';
+import log from './util/logging';
+
 // import { notify } from './notifications';
 
 import * as api from './api';

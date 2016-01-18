@@ -1,7 +1,4 @@
-import {
-  credentials
-}
-from './api_credentials';
+import { credentials } from '../api/credentials';
 
 /**
  * Filter middleware

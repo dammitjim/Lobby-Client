@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Store from './store';
-import Application from './app';
-import Listeners from './listeners';
+import Store from './state/store';
+import Application from './components/app';
+import Listeners from './state/listeners';
 
 console.log('Active listeners:', Listeners);
 

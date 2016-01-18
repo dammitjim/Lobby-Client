@@ -1,9 +1,9 @@
 'use babel';
 import electron from 'electron';
 
-import * as auth from './back-end/auth';
+import * as auth from './back-end/api/auth';
 import menu from './back-end/menu';
-import log from './back-end/logging';
+import log from './back-end/util/logging';
 
 const app = electron.app;  // Module to control application life.
 const ipcMain = electron.ipcMain;
