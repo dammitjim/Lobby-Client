@@ -12,7 +12,7 @@ const propTypes = {
   preview: React.PropTypes.string,
   status: React.PropTypes.string.isRequired,
   game: React.PropTypes.string.isRequired,
-  logo: React.PropTypes.string.isRequired
+  logo: React.PropTypes.string
 };
 
 // TODO Channel & Game links
