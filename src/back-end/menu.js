@@ -4,15 +4,15 @@ import menubar from 'menubar';
 import open from 'open';
 import { authenticate } from './middlewares';
 import log from './logging';
-import { notify } from './notifications';
+// import { notify } from './notifications';
 
 import * as api from './api';
 
 const ipcMain = Electron.ipcMain;
 
 const bar = menubar({
-  index: 'file://' + __dirname + '/../front-end/menubar/index.html',
-  icon: 'file://' + __dirname + '/../front-end/menubar/icon.icns',
+  index: 'file://' + __dirname + '/../native-ui/menubar/index.html',
+  icon: 'file://' + __dirname + '/../native-ui/menubar/icon.icns',
   width: 320,
   height: 600,
   showDockIcon: true
@@ -28,13 +28,10 @@ ipcMain.on('open-browser', (event, url) => {
 
 let polledData = '';
 
-function checkNotifications(original, updated) {
-  log.info(updated);
-  notify('This is only a test', 'This is only a message', 'http://healthyceleb.com/wp-content/uploads/2013/08/Dwayne-Johnson.jpg', (notifierObject, options) => {
-    log.info('Notifier Object', notifierObject);
-    log.info('Options', options);
-  });
-}
+// function checkNotifications(original, updated) {
+  // notify('This is only a test', 'This is only a message', 'http://healthyceleb.com/wp-content/uploads/2013/08/Dwayne-Johnson.jpg', (notifierObject, options) => {
+  // });
+// }
 
 /**
  * Polls the api and sends the data to the target
@@ -42,7 +39,7 @@ function checkNotifications(original, updated) {
  */
 function poll(target) {
   api.call('streams/followed', authenticate, (err, data) => {
-    checkNotifications(polledData, data);
+    // checkNotifications(polledData, data);
     polledData = data;
     if (target.window !== undefined) {
       if (target.window.webContents !== undefined) {
