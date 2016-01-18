@@ -11,8 +11,8 @@ import * as api from './api';
 const ipcMain = Electron.ipcMain;
 
 const bar = menubar({
-  index: 'file://' + __dirname + '/../front-end/native-ui/index.html',
-  icon: 'file://' + __dirname + '/../front-end/native-ui/icon.icns',
+  index: 'file://' + __dirname + '/../front-end/menubar/index.html',
+  icon: 'file://' + __dirname + '/../front-end/menubar/icon.icns',
   width: 320,
   height: 600,
   showDockIcon: true
