@@ -1,4 +1,4 @@
-# Lobby [![Build Status](https://travis-ci.org/jimah/Lobby.svg)](https://travis-ci.org/jimah/Lobby)
+# Lobby - Client [![Build Status](https://travis-ci.org/jimah/Lobby.svg)](https://travis-ci.org/jimah/Lobby)
 
 A Twitch player based on Electron. Currently a work in progress.
 
