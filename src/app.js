@@ -7,15 +7,10 @@ import log from './back-end/util/logging';
 
 const app = electron.app;  // Module to control application life.
 const ipcMain = electron.ipcMain;
-const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
-  let mainWindow = null;
-
-  log.info('Creating menubar');
-  menu();
 
   // Report crashes to our server.
   electron.crashReporter.start({
@@ -37,24 +32,8 @@ export function start() {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   app.on('ready', () => {
-    log.info('Creating main browser window');
-
-    // Create the browser window.
-    mainWindow = new BrowserWindow({ width: 800, height: 600 });
-
-    // and load the index.html of the app.
-    mainWindow.loadURL('file://' + __dirname + '/front-end/index.html');
-
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools();
-
-    // Emitted when the window is closed.
-    mainWindow.on('closed', () => {
-      // Dereference the window object, usually you would store windows
-      // in an array if your app supports multi windows, this is the time
-      // when you should delete the corresponding element.
-      mainWindow = null;
-    });
+    log.info('Creating menubar');
+    menu();
   });
 
   ipcMain.on('button-pressed', auth.InitiateAuthFlow);

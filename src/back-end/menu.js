@@ -13,14 +13,14 @@ import * as api from './api';
 const ipcMain = Electron.ipcMain;
 
 const bar = menubar({
-  index: 'file://' + __dirname + '/../native-ui/menubar/index.html',
-  icon: 'file://' + __dirname + '/../native-ui/menubar/icon.icns',
+  index: 'file://' + __dirname + '/../front-end/index.html',
+  icon: 'file://' + __dirname + '/../front-end/icon.icns',
   width: 320,
   height: 600,
   showDockIcon: true
 });
 
-const pollInterval = 10000;
+const pollInterval = 5000;
 
 // Message sent from the renderer process to open the twitch stream in native browser
 ipcMain.on('open-browser', (event, url) => {
@@ -52,12 +52,10 @@ function poll(target) {
 }
 
 export default function() {
-  bar.on('ready', () => {
+  poll(bar);
+  setInterval(() => {
     poll(bar);
-    setInterval(() => {
-      poll(bar);
-    }, pollInterval);
-  });
+  }, pollInterval);
 
   bar.on('after-create-window', () => {
     setTimeout(() => {
