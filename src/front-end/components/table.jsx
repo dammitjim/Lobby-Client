@@ -15,7 +15,7 @@ class Table extends React.Component {
     return (
       <div className="table">
         {
-          this.props.store.streams._streams.map((item) => {
+          this.props.store.streams.followed.map((item) => {
             return (
               <Row
                 key={item.key}

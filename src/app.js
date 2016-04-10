@@ -6,6 +6,8 @@ import menu from './back-end/menu';
 import log from './back-end/util/logging';
 
 const app = electron.app;  // Module to control application life.
+app.dock.hide();
+
 const ipcMain = electron.ipcMain;
 
 export function start() {
