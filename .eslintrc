@@ -7,9 +7,10 @@
     "react",
   ],
   "rules":{
-      "no-console": 0,
+      "no-console": 1,
       "comma-dangle": [2, "never"],
       "space-before-function-paren": [2, "never"],
+      "no-unused-vars": [2, { "vars": "all", "args": "none" }],
 
       "react/display-name": 1,
   }

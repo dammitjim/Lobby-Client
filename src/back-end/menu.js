@@ -74,7 +74,6 @@ function getStreams(game) {
     reqURL += `?game=${game}`;
   }
   api.call(reqURL, (err, data) => {
-    console.log(data);
     if (err) {
       log.info(err);
       return;
@@ -107,7 +106,6 @@ function pollFollowed() {
 
 // Message sent to retreive games list
 ipcMain.on('get-games', (event) => {
-  console.log(event);
   getGames();
 });
 
