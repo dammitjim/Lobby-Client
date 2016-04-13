@@ -26,6 +26,7 @@ function applyFilters(filters, path) {
       initial = false;
     }
   }
+
   return pathWithFilters;
 }
 
@@ -68,10 +69,12 @@ function fire(req, callback) {
     log.info('Firing request', req);
     https.get(req, (response) => {
       let data = '';
+
       // Load data into chunks and append to the data
       response.on('data', (chunk) => {
         data += chunk;
       });
+
       response.on('end', () => {
         // Send the parsed object to the callback
         callback(undefined, JSON.parse(data));

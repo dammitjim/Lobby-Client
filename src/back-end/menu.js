@@ -58,6 +58,7 @@ function getGames() {
       log.info(err);
       return;
     }
+
     if (targetAvailable(bar)) {
       bar.window.webContents.send('loaded-games', JSON.stringify(data));
     }
@@ -73,6 +74,7 @@ function getStreams(game) {
   if (game) {
     reqURL += `?game=${game}`;
   }
+
   api.call(reqURL, (err, data) => {
     if (err) {
       log.info(err);
@@ -96,7 +98,6 @@ function getStreams(game) {
  */
 function pollFollowed() {
   api.call('streams/followed', authenticate, (err, data) => {
-    // checkNotifications(polledData, data);
     polledData = data;
     if (targetAvailable(bar)) {
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
@@ -123,6 +124,7 @@ export default function() {
       log.info('Sending loaded-followed-streams to menubar');
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
     }, pollInterval);
+
     bar.window.openDevTools({
       detach: true
     });

@@ -22,7 +22,6 @@ export function setAccessToken(token) {
   credentials.access_token = token;
 }
 
-
 /**
  * Saves the access token in configstore and sets it
  * @param  String token
@@ -31,7 +30,6 @@ export function saveAccessToken(token) {
   conf.set('access_token', token);
   setAccessToken(token);
 }
-
 
 export {
   credentials

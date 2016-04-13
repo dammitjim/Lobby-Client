@@ -1,4 +1,5 @@
 import { credentials } from '../api/credentials';
+import log from './logging';
 
 /**
  * Filter middleware
@@ -24,6 +25,7 @@ export function filter(req, filters) {
       initial = false;
     }
   }
+
   req.path = pathWithFilters;
   return req;
 }
@@ -39,6 +41,7 @@ export function authenticate(req) {
   if (credentials.access_token === undefined) {
     req.error = 'Access token undefined';
   }
+
   req.headers.Authorization = 'OAuth ' + credentials.access_token;
   return req;
 }
@@ -48,7 +51,7 @@ export function authenticate(req) {
  * @param  Object req - Request.
  * @return Object     - Request.
  */
-export function log(req) {
-  console.log(req);
+export function logger(req) {
+  log.info(req);
   return req;
 }

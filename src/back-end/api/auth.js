@@ -47,6 +47,7 @@ function handleAuthCallback(url, callback) {
     response.on('data', (chunk) => {
       data += chunk;
     });
+
     response.on('end', () => {
       callback(JSON.parse(data));
     });
@@ -55,7 +56,6 @@ function handleAuthCallback(url, callback) {
   req.write(postData);
   req.end();
 }
-
 
 /**
  * Launches a twitch authentication window
@@ -72,6 +72,7 @@ export function InitiateAuthFlow() {
     });
 
     let authURL = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code';
+
     // Add scopes (the permissions being requested)
     authURL += ('&scope=' + scopes.join(' '));
     authURL = authURL
@@ -99,10 +100,9 @@ export function InitiateAuthFlow() {
       authWindow = null;
     }, false);
   } else {
-    console.log('Auth code already defined as: ' + credentials.access_token);
+    log.warn('Auth code already defined as: ' + credentials.access_token);
   }
 }
-
 
 /**
  * Checks to see if an authentication token has been set for the active session
