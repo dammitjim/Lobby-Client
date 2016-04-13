@@ -17,7 +17,7 @@ const bar = menubar({
   icon: 'file://' + __dirname + '/../front-end/icon.icns',
   width: 320,
   height: 600,
-  showDockIcon: true
+  showDockIcon: false
 });
 
 const pollInterval = 5000;
