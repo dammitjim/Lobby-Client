@@ -1,8 +1,11 @@
 import { authenticate } from '../util/middlewares';
+import { notify } from '../util/notifications';
 import log from '../util/logging';
 
 import * as api from '../api/api';
 import * as menulib from './lib';
+
+import * as _ from 'lodash';
 
 /**
  * Validates the target browserwindow's capability to receive messages
@@ -27,12 +30,11 @@ export function pollFollowed(target) {
     api.call('streams/followed', authenticate, (err, data) => {
       // If we have previous data to compare, check to see if anybody new is streaming
       if (target.polledData) {
-        if (menulib.diff(target.polledData, data)) {
-          // TODO
-          // here we need to notify the user of differences if notifications are enabled
-          //
-          // Set the icon to indicate notifications bro
-          // bar.tray.setIcon(somicon)
+        const newStreams = menulib.diffStreams(target.polledData, data.streams);
+        if (_.size(newStreams) > 0) {
+          for (let i = 0; i < _.size(newStreams); i++) {
+            notify(newStreams[i].name, newStreams[i].status, newStreams[i].thumbnail, newStreams[i].url);
+          }
         }
       }
 
