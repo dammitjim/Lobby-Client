@@ -30,6 +30,7 @@
     "configstore": "^1.4.0",
     "flux": "^2.1.1",
     "history": "^1.17.0",
+    "lodash": "^4.11.0",
     "menubar": "^3.0.0",
     "node-notifier": "^4.4.0",
     "open": "0.0.5",

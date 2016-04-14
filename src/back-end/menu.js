@@ -3,10 +3,9 @@ import Electron from 'electron';
 import menubar from 'menubar';
 import open from 'open';
 
+import * as menulib from './menu/lib';
 import { authenticate } from './util/middlewares';
 import log from './util/logging';
-
-// import { notify } from './notifications';
 
 import * as api from './api';
 
@@ -98,6 +97,15 @@ function getStreams(game) {
  */
 function pollFollowed() {
   api.call('streams/followed', authenticate, (err, data) => {
+    // If we have previous data to compare, check to see if anybody new is streaming
+    if (polledData) {
+      if (menulib.diff(polledData, data)) {
+        // TODO
+        // here we need to notify the user of differences if notifications are enabled
+        // need to update the icon to be the notifications one
+      }
+    }
+
     polledData = data;
     if (targetAvailable(bar)) {
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
