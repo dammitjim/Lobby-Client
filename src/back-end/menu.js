@@ -1,16 +1,18 @@
-import Electron from 'electron';
+import electron from 'electron';
 
 import menubar from 'menubar';
 import open from 'open';
 
-import * as menulib from './menu/lib';
-import { authenticate } from './util/middlewares';
+import * as menuactions from './menu/actions';
 import log from './util/logging';
 
-import * as api from './api';
+// Process control
+const ipcMain = electron.ipcMain;
 
-const ipcMain = Electron.ipcMain;
+// Interval to poll the api
+const pollInterval = 5000;
 
+// Create the menubar
 const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/index.html',
   icon: process.cwd() + '/src/front-end/icons/purple_heart.png',
@@ -19,120 +21,43 @@ const bar = menubar({
   showDockIcon: false
 });
 
-const pollInterval = 5000;
-
 // Message sent from the renderer process to open the twitch stream in native browser
 ipcMain.on('open-browser', (event, url) => {
   log.info('Opening %s in browser.', url);
   open(url);
 });
 
-let polledData = '';
-
-// function checkNotifications(original, updated) {
-  // notify('This is only a test', 'This is only a message', 'http://healthyceleb.com/wp-content/uploads/2013/08/Dwayne-Johnson.jpg', (notifierObject, options) => {
-  // });
-// }
-
-/**
- * Validates the target browserwindow's capability to receive messages
- * @param  browserwindow target
- * @return bool
- */
-function targetAvailable(target) {
-  if (target.window !== undefined) {
-    if (target.window.webContents !== undefined) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * Get games retreives the top games list
- */
-function getGames() {
-  api.call('games/top?limit=30', (err, data) => {
-    if (err) {
-      log.info(err);
-      return;
-    }
-
-    if (targetAvailable(bar)) {
-      bar.window.webContents.send('loaded-games', JSON.stringify(data));
-    }
-  });
-}
-
-/**
- * Get streams for game if provided, global if not
- * @param  string game
- */
-function getStreams(game) {
-  let reqURL = 'streams';
-  if (game) {
-    reqURL += `?game=${game}`;
-  }
-
-  api.call(reqURL, (err, data) => {
-    if (err) {
-      log.info(err);
-      return;
-    }
-    if (targetAvailable(bar)) {
-      if (game) {
-        const d = {};
-        d[game] = data;
-        bar.window.webContents.send('loaded-streams', JSON.stringify(d));
-      } else {
-        bar.window.webContents.send('loaded-streams', JSON.stringify(data));
-      }
-    }
-  });
-}
-
-/**
- * Polls the api and sends the data to the target
- * @param  BrowserWindow target
- */
-function pollFollowed() {
-  api.call('streams/followed', authenticate, (err, data) => {
-    // If we have previous data to compare, check to see if anybody new is streaming
-    if (polledData) {
-      if (menulib.diff(polledData, data)) {
-        // TODO
-        // here we need to notify the user of differences if notifications are enabled
-        //
-        // Set the icon to indicate notifications bro
-        // bar.tray.setIcon(somicon)
-      }
-    }
-
-    polledData = data;
-    if (targetAvailable(bar)) {
-      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
-    }
-  });
-}
-
 // Message sent to retreive games list
 ipcMain.on('get-games', (event) => {
-  getGames();
+  menuactions.getGames();
+});
+
+electron.app.on('ready', () => {
+  // Stop polling on suspend
+  electron.powerMonitor.on('suspend', () => {
+    bar.continuePolling = false;
+  });
+
+  // Continue polling on resume
+  electron.powerMonitor.on('resume', () => {
+    bar.continuePolling = true;
+  });
 });
 
 export default function() {
-  pollFollowed();
-  getGames();
-  getStreams();
+  bar.continuePolling = true;
+  menuactions.pollFollowed(bar);
+  menuactions.getGames(bar);
+  menuactions.getStreams(bar);
 
   setInterval(() => {
-    pollFollowed();
+    menuactions.pollFollowed(bar);
   }, pollInterval);
 
   bar.on('after-create-window', () => {
     setTimeout(() => {
       log.info('Sending loaded-followed-streams to menubar');
-      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
+      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(bar.polledData));
     }, pollInterval);
 
     // bar.window.openDevTools({
