@@ -13,7 +13,7 @@ const ipcMain = Electron.ipcMain;
 
 const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/index.html',
-  icon: 'file://' + __dirname + '/../front-end/icon.icns',
+  icon: process.cwd() + '/src/front-end/icons/purple_heart.png',
   width: 320,
   height: 600,
   showDockIcon: false
@@ -102,7 +102,9 @@ function pollFollowed() {
       if (menulib.diff(polledData, data)) {
         // TODO
         // here we need to notify the user of differences if notifications are enabled
-        // need to update the icon to be the notifications one
+        //
+        // Set the icon to indicate notifications bro
+        // bar.tray.setIcon(somicon)
       }
     }
 
@@ -133,9 +135,9 @@ export default function() {
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(polledData));
     }, pollInterval);
 
-    bar.window.openDevTools({
-      detach: true
-    });
+    // bar.window.openDevTools({
+    //   detach: true
+    // });
   });
 
   bar.on('after-close', () => {
