@@ -1,9 +1,9 @@
 import React from 'react';
 import { Router, Route } from 'react-router';
 
-import Followed from './followed';
-import Channels from './channels';
-import Games from './games';
+import Followed from './views/followed';
+import Channels from './views/channels';
+import Games from './views/games';
 import Nav from './nav';
 
 import { refreshChannels } from '../util/refresh';

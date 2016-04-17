@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from './table';
+import Table from './partials/table';
 import { connect } from 'react-redux';
 
 const displayName = 'Followed Streams';

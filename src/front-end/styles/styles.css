@@ -16,7 +16,7 @@ body {
   height: 100%;
   margin: 0;
   overflow-y: hidden;
-  padding-top: 50px; }
+  padding-top: 10px; }
   .native-menu .title-bar {
     background: linear-gradient(top, #fafafa 0%, #cfcfcf 100%);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
