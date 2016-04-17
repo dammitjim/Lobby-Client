@@ -4,13 +4,12 @@ import * as _ from 'lodash';
 
 import log from './logging';
 
-// TODO improve the readability of this function
-export function notify(t, m, i, url) {
-  log.info('Sending notification', t, m, i);
+export function notify(title, message, icon, url) {
+  log.info('Sending notification', title, message, icon);
   notifier.notify({
-    title: t,
-    message: m,
-    icon: i,
+    title,
+    message,
+    icon,
     sound: false,
     wait: false
   }, (err, response) => {
