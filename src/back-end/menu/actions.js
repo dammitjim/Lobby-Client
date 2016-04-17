@@ -78,13 +78,13 @@ export function getStreams(target, game) {
       return;
     }
     if (targetAvailable(target)) {
-      if (game) {
-        const d = {};
-        d[game] = data;
-        target.window.webContents.send('loaded-streams', JSON.stringify(d));
-      } else {
-        target.window.webContents.send('loaded-streams', JSON.stringify(data));
-      }
+      // if (game) {
+      //   const d = {};
+      //   d[game] = data;
+      //   target.window.webContents.send('loaded-channel-streams', JSON.stringify(d));
+      // } else {
+      target.window.webContents.send('loaded-channel-streams', JSON.stringify(data));
+      // }
     }
   });
 }

@@ -1,48 +1,57 @@
 import React from 'react';
 import Row from './row';
-import { connect } from 'react-redux';
 
 const displayName = 'Table';
 // TODO propTypes
-// const propTypes = {};
-
+const propTypes = {
+  data: React.PropTypes.array.isRequired
+};
 class Table extends React.Component {
 
   /**
    * render
    */
   render() {
+    const streams = this.props.data;
+    if (streams) {
+      return (
+        <div className="table">
+          {
+            streams.map((item) => {
+              return (
+                <Row
+                  key={item.key}
+                  channelName={item.channelName}
+                  viewers={item.viewers}
+                  url={item.url}
+                  preview={item.preview}
+                  status={item.status}
+                  game={item.game}
+                  logo={item.logo}
+                />
+              );
+            })
+          }
+        </div>
+      );
+    }
     return (
-      <div className="table">
-        {
-          this.props.store.streams.followed.map((item) => {
-            return (
-              <Row
-                key={item.key}
-                channelName={item.channelName}
-                viewers={item.viewers}
-                url={item.url}
-                preview={item.preview}
-                status={item.status}
-                game={item.game}
-                logo={item.logo}
-              />
-            );
-          })
-        }
-      </div>
+      <h2>Loading...</h2>
     );
   }
 }
 
 Table.displayName = displayName;
+Table.propTypes = propTypes;
 
-const mapStateToProps = (state) => {
-  return {
-    store: state
-  };
-};
+export default Table;
 
-const con = connect(mapStateToProps)(Table);
-
-export default con;
+// const mapStateToProps = (state) => {
+//   return {
+//     store: state
+//   };
+// };
+//
+// const con = connect(mapStateToProps)(Table);
+//
+// export default con;

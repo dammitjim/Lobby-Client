@@ -16,9 +16,8 @@ function getStreamPreview(template) {
   return newTemplate;
 }
 
-// Fired when the main thread receives a response from the api
-ipcRenderer.on('loaded-followed-streams', (event, data) => {
-  const d = JSON.parse(data);
+function extractStreamData(json) {
+  const d = JSON.parse(json);
   const streams = [];
 
   // Extract what we need
@@ -34,8 +33,19 @@ ipcRenderer.on('loaded-followed-streams', (event, data) => {
       logo: d.streams[i].channel.logo
     });
   }
-  // Send action to store
-  Store.dispatch(actionCreators.streamAction(streams));
+
+  return streams;
+}
+
+// Fired when the main thread receives a response from the api
+ipcRenderer.on('loaded-followed-streams', (event, data) => {
+  const streams = extractStreamData(data);
+  Store.dispatch(actionCreators.followedStreamsLoadedAction(streams));
 });
 
-export default ['loaded-followed-streams'];
+ipcRenderer.on('loaded-channel-streams', (event, data) => {
+  const streams = extractStreamData(data);
+  Store.dispatch(actionCreators.channelStreamsLoadedAction(streams));
+});
+
+export default ['loaded-followed-streams', 'loaded-channel-streams'];

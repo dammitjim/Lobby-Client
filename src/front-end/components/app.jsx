@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from './table';
+import Root from './root';
 import { Provider } from 'react-redux';
 
 const displayName = 'Application';
@@ -11,7 +11,7 @@ class Application extends React.Component {
   render() {
     return (
       <Provider store={ this.props.store }>
-        <Table />
+        <Root />
       </Provider>
     );
   }

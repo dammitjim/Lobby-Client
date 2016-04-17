@@ -36,6 +36,10 @@ ipcMain.on('get-games', (event) => {
   menuactions.getGames();
 });
 
+ipcMain.on('get-channels', (event, game) => {
+  menuactions.getStreams(bar, game);
+});
+
 electron.app.on('ready', () => {
   // Stop polling on suspend
   electron.powerMonitor.on('suspend', () => {
@@ -64,9 +68,7 @@ export default function() {
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(bar.polledData));
     }, pollInterval);
 
-    // bar.window.openDevTools({
-    //   detach: true
-    // });
+    bar.window.openDevTools({ detach: true });
   });
 
   bar.on('after-close', () => {
