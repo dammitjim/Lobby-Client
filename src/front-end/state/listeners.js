@@ -48,4 +48,9 @@ ipcRenderer.on('loaded-channel-streams', (event, data) => {
   Store.dispatch(actionCreators.channelStreamsLoadedAction(streams));
 });
 
-export default ['loaded-followed-streams', 'loaded-channel-streams'];
+ipcRenderer.on('loaded-games', (event, data) => {
+  const games = JSON.parse(data);
+  Store.dispatch(actionCreators.gamesLoadedAction(games));
+});
+
+export default ['loaded-followed-streams', 'loaded-channel-streams', 'loaded-games'];

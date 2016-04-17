@@ -6,7 +6,7 @@ import Channels from './views/channels';
 import Games from './views/games';
 import Nav from './nav';
 
-import { refreshChannels } from '../util/refresh';
+import { refreshChannels, refreshGames, refreshFollowed } from '../util/refresh';
 
 const displayName = 'Router';
 
@@ -15,8 +15,8 @@ class Routes extends React.Component {
     return (
       <Router>
         <Route path="/" component={Nav}>
-          <Route path="/followed" component={Followed}/>
-          <Route path="/games" component={Games}/>
+          <Route path="/followed" component={Followed} onEnter={refreshFollowed}/>
+          <Route path="/games" component={Games} onEnter={refreshGames}/>
           <Route path="/channels" component={Channels} onEnter={refreshChannels}/>
         </Route>
       </Router>

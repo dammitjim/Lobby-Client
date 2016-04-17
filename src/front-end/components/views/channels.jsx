@@ -1,5 +1,7 @@
 import React from 'react';
 import Table from './partials/table';
+import { refreshChannels } from '../../util/refresh';
+
 import { connect } from 'react-redux';
 
 const displayName = 'Channels';
@@ -10,7 +12,13 @@ const propTypes = {
 class Channels extends React.Component {
   render() {
     return (
-      <Table data={ this.props.store.streams.channels }/>
+      <div>
+        <section className="table-header">
+          <h2>Channels</h2>
+          <a onClick={ refreshChannels }>Refresh</a>
+        </section>
+        <Table data={ this.props.store.streams.channels } />
+      </div>
     );
   }
 }

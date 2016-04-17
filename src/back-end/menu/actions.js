@@ -57,7 +57,15 @@ export function getGames(target) {
     }
 
     if (targetAvailable(target)) {
-      target.window.webContents.send('loaded-games', JSON.stringify(data));
+      const games = [];
+      for (let i = 0; i < _.size(data.top); i++) {
+        const game = {};
+        game.viewers = data.top[i].viewers;
+        game.title = data.top[i].game.name;
+        game.art = data.top[i].game.box.medium;
+        games.push(game);
+      }
+      target.window.webContents.send('loaded-games', JSON.stringify(games));
     }
   });
 }
@@ -78,13 +86,7 @@ export function getStreams(target, game) {
       return;
     }
     if (targetAvailable(target)) {
-      // if (game) {
-      //   const d = {};
-      //   d[game] = data;
-      //   target.window.webContents.send('loaded-channel-streams', JSON.stringify(d));
-      // } else {
       target.window.webContents.send('loaded-channel-streams', JSON.stringify(data));
-      // }
     }
   });
 }

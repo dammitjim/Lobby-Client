@@ -10,7 +10,7 @@ import log from './util/logging';
 const ipcMain = electron.ipcMain;
 
 // Interval to poll the api
-const pollInterval = 5000;
+const pollInterval = 10000;
 
 // Create the menubar
 const bar = menubar({
@@ -33,11 +33,15 @@ ipcMain.on('view-loaded', (event) => {
 
 // Message sent to retreive games list
 ipcMain.on('get-games', (event) => {
-  menuactions.getGames();
+  menuactions.getGames(bar);
 });
 
 ipcMain.on('get-channels', (event, game) => {
   menuactions.getStreams(bar, game);
+});
+
+ipcMain.on('get-followed', (event) => {
+  menuactions.pollFollowed(bar);
 });
 
 electron.app.on('ready', () => {

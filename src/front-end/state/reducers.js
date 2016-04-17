@@ -4,7 +4,7 @@
  * @param  Object getState - redux built in
  * @return Object state    - current application state
  */
-export function streams(state = { followed: [], channels: [] }, action) {
+export function streams(state = { followed: [], channels: [], games: [] }, action) {
   console.log('Streams reducer was called with state', state, 'and action', action);
 
   switch (action.type) {
@@ -15,6 +15,10 @@ export function streams(state = { followed: [], channels: [] }, action) {
     case 'LOADED_CHANNEL_STREAMS':
       return Object.assign({}, state, {
         channels: action.value
+      });
+    case 'LOADED_GAMES':
+      return Object.assign({}, state, {
+        games: action.value
       });
     default:
       return state;

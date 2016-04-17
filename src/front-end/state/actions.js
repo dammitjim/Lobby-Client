@@ -15,3 +15,12 @@ export function channelStreamsLoadedAction(data) {
     });
   };
 }
+
+export function gamesLoadedAction(data) {
+  return (dispatch) => {
+    dispatch({
+      type: 'LOADED_GAMES',
+      value: data
+    });
+  };
+}
