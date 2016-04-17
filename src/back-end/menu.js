@@ -27,6 +27,10 @@ ipcMain.on('open-browser', (event, url) => {
   open(url);
 });
 
+ipcMain.on('view-loaded', (event) => {
+  bar.window.webContents.send('loaded-followed-streams', JSON.stringify(bar.polledData));
+});
+
 // Message sent to retreive games list
 ipcMain.on('get-games', (event) => {
   menuactions.getGames();
