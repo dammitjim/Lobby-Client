@@ -8,6 +8,21 @@ const propTypes = {
 
 class Nav extends React.Component {
   render() {
+    let title = '';
+    switch (true) {
+      case /games/.test(window.location.hash):
+        title = 'Games';
+        break;
+      case /channels/.test(window.location.hash):
+        title = 'Channels';
+        break;
+      case /followed/.test(window.location.hash):
+        title = 'Following';
+        break;
+      default:
+        break;
+    }
+
     return (
       <div>
         <nav id="nav">

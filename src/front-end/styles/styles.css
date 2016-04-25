@@ -10,11 +10,10 @@ html {
   padding: 0; }
 
 body {
-  margin: 0;
-  overflow: hidden; }
+  margin: 0; }
   body #mount {
     height: 100%;
-    overflow-y: auto;
+    overflow-y: overlay;
     width: 100%; }
 
 html,
