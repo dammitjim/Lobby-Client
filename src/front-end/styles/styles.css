@@ -145,13 +145,18 @@ nav {
     font-size: 14px;
     font-weight: bold; }
   .table-header #back-to-top {
+    background: linear-gradient(to bottom, rgba(250, 250, 250, 0.65) 0%, transparent 100%);
     display: none;
     height: 20px;
     left: 0;
+    opacity: 0;
     position: absolute;
     top: 0;
-    transition: background 2s;
+    transition: opacity 1s;
     width: 100%;
     z-index: 101; }
+    .table-header #back-to-top:hover {
+      opacity: .25; }
     .table-header #back-to-top.active {
+      cursor: pointer;
       display: block; }
