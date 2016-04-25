@@ -14,6 +14,7 @@ class Followed extends React.Component {
         <section className="table-header" id="table-header">
           <div id="back-to-top"></div>
           <h2>Following</h2>
+          <div className="clearfix"></div>
         </section>
         <Table data={ this.props.store.streams.followed }/>
       </div>

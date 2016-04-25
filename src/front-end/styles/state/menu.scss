@@ -9,8 +9,23 @@
 
   h2 {
     color: $primary-text;
+    display: inline;
+    float: left;
     font-size: 14px;
     font-weight: bold;
+  }
+
+  .refresh {
+    color: $primary-text;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .clearfix {
+    @include clearfix;
   }
 
   #back-to-top {

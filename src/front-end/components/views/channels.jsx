@@ -16,7 +16,8 @@ class Channels extends React.Component {
         <section className="table-header" id="table-header">
           <div id="back-to-top"></div>
           <h2>Channels</h2>
-          <a onClick={ refreshChannels }>Refresh</a>
+          <a className="refresh" onClick={ refreshChannels }>R</a>
+          <div className="clearfix"></div>
         </section>
         <Table data={ this.props.store.streams.channels } />
       </div>

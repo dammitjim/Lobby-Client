@@ -142,8 +142,21 @@ nav {
   z-index: 100; }
   .table-header h2 {
     color: #fafafa;
+    display: inline;
+    float: left;
     font-size: 14px;
     font-weight: bold; }
+  .table-header .refresh {
+    color: #fafafa;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 14px;
+    font-weight: bold; }
+  .table-header .clearfix::after {
+    clear: both;
+    content: "";
+    display: table; }
   .table-header #back-to-top {
     background: linear-gradient(to bottom, rgba(250, 250, 250, 0.65) 0%, transparent 100%);
     display: none;
