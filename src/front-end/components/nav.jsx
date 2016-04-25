@@ -10,12 +10,16 @@ class Nav extends React.Component {
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to="/games" activeClassName="active">Games</Link></li>
-          <li><Link to="/channels" activeClassName="active">Channels</Link></li>
-          <li><Link to="/followed" activeClassName="active">Followed</Link></li>
-        </ul>
-        { this.props.children }
+        <nav>
+          <ul>
+            <li><Link to="/games" className="menu-link" activeClassName="active">G</Link></li>
+            <li><Link to="/channels" className="menu-link" activeClassName="active">C</Link></li>
+            <li><Link to="/followed" className="menu-link" activeClassName="active">F</Link></li>
+          </ul>
+        </nav>
+        <div>
+          { this.props.children }
+        </div>
       </div>
     );
   }

@@ -72,7 +72,7 @@ export default function() {
       bar.window.webContents.send('loaded-followed-streams', JSON.stringify(bar.polledData));
     }, pollInterval);
 
-    bar.window.openDevTools({ detach: true });
+    // bar.window.openDevTools({ detach: true });
   });
 
   bar.on('after-close', () => {

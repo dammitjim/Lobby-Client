@@ -1,13 +1,45 @@
 $max-width: 100%;
 $visual-grid: true;
 
+$live-size: 5px;
+
+$title-bar-gradient-1: #fafafa;
+$title-bar-gradient-2: #cfcfcf;
+$title-bar-border-bottom: rgba(0, 0, 0, .5);
+$title-bar-border-top: rgba(255, 255, 255, .5);
+$title-bar-box-shadow: rgba(74, 74, 74, .5);
+$title-bar-text: #787878;
+
+$table-text-color: #909090;
+
+$stream-overlay-gradient-1: rgba(14, 14, 14, 1);
+$stream-overlay-gradient-2: rgba(125, 125, 125, 0);
+$stream-overlay-viewers: #c8c8c8;
+
+$primary-text: #fafafa;
+$twitch-purple: #6441a5;
+
 * {
   font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 @mixin condensed {
   font-family: "Roboto Condensed", sans-serif;
 }
+
+body {
+  margin: 0;
+  overflow: hidden;
+
+  #mount {
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+  }
+}
+
 
 html,
 body {

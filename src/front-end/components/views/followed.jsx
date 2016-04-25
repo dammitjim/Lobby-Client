@@ -10,7 +10,12 @@ const propTypes = {
 class Followed extends React.Component {
   render() {
     return (
-      <Table data={ this.props.store.streams.followed }/>
+      <div>
+        <section className="table-header">
+          <h2>Following</h2>
+        </section>
+        <Table data={ this.props.store.streams.followed }/>
+      </div>
     );
   }
 }

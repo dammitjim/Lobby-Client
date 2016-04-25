@@ -1,0 +1,10 @@
+.title-bar {
+  background: linear-gradient(top, $title-bar-gradient-1 0%, $title-bar-gradient-2 100%);
+  border-bottom: 1px solid $title-bar-border-bottom;
+  border-top: 1px solid $title-bar-border-top;
+  box-shadow: 0 2px 20px -2px $title-bar-box-shadow;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}

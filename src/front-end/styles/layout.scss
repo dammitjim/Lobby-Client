@@ -1,0 +1,13 @@
+.stream-table {
+  @include fill-parent;
+  // color: $table-text-color;
+}
+
+.stream-row {
+  @include condensed;
+  @include outer-container;
+
+  display: block;
+  overflow: auto;
+  padding-bottom: 10px;
+}

@@ -15,7 +15,7 @@ class Table extends React.Component {
     const streams = this.props.data;
     if (streams) {
       return (
-        <div className="table">
+        <div className="stream-table">
           {
             streams.map((item) => {
               return (

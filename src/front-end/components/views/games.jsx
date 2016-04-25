@@ -9,7 +9,11 @@ const propTypes = {
 class Games extends React.Component {
   render() {
     return (
-      <h2>Germes</h2>
+      <div>
+        <section className="table-header">
+          <h2>Games</h2>
+        </section>
+      </div>
     );
   }
 }

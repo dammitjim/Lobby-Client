@@ -30,7 +30,7 @@ class Row extends React.Component {
   */
   render() {
     return (
-      <div className="row" key={ this.props.key } >
+      <div className="stream-row" key={ this.props.key } >
         <section className="top">
           <div className="profile">
             <img src={ this.props.logo } onClick={ this.loadBrowser.bind(this) } />

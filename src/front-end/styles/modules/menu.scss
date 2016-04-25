@@ -1,142 +1,35 @@
-$live-size: 5px;
+nav {
+  background: $twitch-purple;
+  color: $primary-text;
+  width: 100%;
 
-$title-bar-gradient-1: #fafafa;
-$title-bar-gradient-2: #cfcfcf;
-$title-bar-border-bottom: rgba(0, 0, 0, .5);
-$title-bar-border-top: rgba(255, 255, 255, .5);
-$title-bar-box-shadow: rgba(74, 74, 74, .5);
-$title-bar-text: #787878;
+  a {
+    color: $primary-text;
+    font-weight: bold;
+    text-decoration: none;
+  }
 
-$stream-overlay-gradient-1: rgba(14, 14, 14, 1);
-$stream-overlay-gradient-2: rgba(125, 125, 125, 0);
-$stream-overlay-viewers: #c8c8c8;
-
-.native-menu {
-  height: 100%;
-  margin: 0;
-  overflow-y: hidden;
-  padding-top: 10px;
-
-  .title-bar {
-    background: linear-gradient(top, $title-bar-gradient-1 0%, $title-bar-gradient-2 100%);
-    border-bottom: 1px solid $title-bar-border-bottom;
-    border-top: 1px solid $title-bar-border-top;
-    box-shadow: 0 2px 20px -2px $title-bar-box-shadow;
-    position: fixed;
-    top: 0;
+  ul {
+    display: table;
+    table-layout: fixed;
     width: 100%;
-    z-index: 10;
 
-    span {
-      color: $title-bar-text;
-      display: block;
-      padding: 10px;
-      text-align: left;
+    li {
+      display: table-cell;
     }
   }
 
-  #mount {
-    height: 100%;
-    overflow-y: auto;
-    width: 100%;
-  }
-}
-
-$table-text-color: #909090;
-
-.table {
-  @include fill-parent;
-  color: $table-text-color;
-  font-size: 14px;
-}
-
-.row {
-  @include condensed;
-  @include outer-container;
-
-  display: block;
-  overflow: auto;
-  padding-bottom: 10px;
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  .top {
-    overflow: auto;
-    padding: 10px;
-
-    &::after {
-      clear: both;
-    }
-  }
-
-  .profile {
-    @include span-columns(2);
-    cursor: pointer;
-
-    img {
-      height: auto;
-      width: 100%;
-    }
-  }
-
-  .information {
-    @include span-columns(10);
-  }
-
-  .channel {
-    cursor: pointer;
+  .menu-link {
     display: block;
-    margin-bottom: 5px;
+    padding: 20px;
+    text-align: center;
 
     &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .game {
-    display: block;
-    font-size: 13px;
-  }
-
-  .detail {
-    cursor: pointer;
-    margin-top: 5px;
-    position: relative;
-
-    &:hover {
-      .viewers {
-        opacity: 1;
-      }
+      background: darken($twitch-purple, 5%);
     }
 
-    .overlay {
-      background: linear-gradient(to bottom, $stream-overlay-gradient-1 0%, $stream-overlay-gradient-2 40%, $stream-overlay-gradient-2 60%, $stream-overlay-gradient-1 100%);
-      display: inline-block;
-      height: 170px;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
+    &.active {
+      background: darken($twitch-purple, 20%);
     }
-
-    .viewers {
-      bottom: 10px;
-      color: $stream-overlay-viewers;
-      display: block;
-      font-size: 14px;
-      left: 10px;
-      opacity: .5;
-      position: absolute;
-      transition: opacity .2s ease-in;
-    }
-  }
-
-  img {
-    display: block;
-    height: auto;
-    width: 100%;
-    z-index: -1;
   }
 }
