@@ -1,5 +1,6 @@
 .table-header {
   background: darken($twitch-purple, 15%);
+  display: block;
   padding: 20px;
   position: relative;
   top: 0;
@@ -10,5 +11,20 @@
     color: $primary-text;
     font-size: 14px;
     font-weight: bold;
+  }
+
+  #back-to-top {
+    display: none;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: background 2s;
+    width: 100%;
+    z-index: 101;
+
+    &.active {
+      display: block;
+    }
   }
 }

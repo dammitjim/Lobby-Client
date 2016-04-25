@@ -134,6 +134,7 @@ nav {
 
 .table-header {
   background: #432b6e;
+  display: block;
   padding: 20px;
   position: relative;
   top: 0;
@@ -143,3 +144,14 @@ nav {
     color: #fafafa;
     font-size: 14px;
     font-weight: bold; }
+  .table-header #back-to-top {
+    display: none;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: background 2s;
+    width: 100%;
+    z-index: 101; }
+    .table-header #back-to-top.active {
+      display: block; }

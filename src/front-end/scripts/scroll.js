@@ -1,14 +1,28 @@
-var mount = document.getElementById('mount');
+'use babel';
+
+require('babel-core/register');
+
+const mount = document.getElementById('mount');
+
+function goToTop() {
+  mount.scrollTop = 0;
+}
 
 function scrollFunction() {
-  var scrollPos = mount.scrollTop;
+  const header = document.getElementById('table-header');
+  const nav = document.getElementById('nav');
+  const backToTop = document.getElementById('back-to-top');
 
-  if (scrollPos > 60) {
-    document.getElementById('table-header').style.position = 'fixed';
-    document.getElementById('nav').style.margin = '30px 0px';
+  if (mount.scrollTop > 60) {
+    header.style.position = 'fixed';
+    nav.style.margin = '30px 0px';
+    backToTop.classList.add('active');
+    backToTop.onclick = goToTop;
   } else {
-    document.getElementById('table-header').style.position = 'relative';
-    document.getElementById('nav').style.margin = '0';
+    header.style.position = 'relative';
+    nav.style.margin = '0';
+    backToTop.onclick = null;
+    backToTop.classList.remove('active');
   }
 }
 
