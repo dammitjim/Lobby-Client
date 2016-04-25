@@ -1,0 +1,16 @@
+.all-channels {
+  background: $twitch-purple;
+  color: $primary-text;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    background: darken($twitch-purple, 10%);
+  }
+}

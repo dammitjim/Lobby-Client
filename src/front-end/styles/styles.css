@@ -38,6 +38,20 @@ body {
     content: "";
     display: table; }
 
+.all-channels {
+  background: #6441a5;
+  color: #fafafa;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 100%; }
+  .all-channels:hover {
+    background: #4e3380; }
+
 nav {
   background: #6441a5;
   color: #fafafa;

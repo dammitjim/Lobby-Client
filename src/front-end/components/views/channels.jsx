@@ -1,15 +1,22 @@
 import React from 'react';
+import Electron from 'electron';
 import Table from './partials/table';
 import { refreshChannels } from '../../util/refresh';
 
 import { connect } from 'react-redux';
 
+const ipcRenderer = Electron.ipcRenderer;
 const displayName = 'Channels';
 const propTypes = {
   store: React.PropTypes.object.isRequired
 };
 
 class Channels extends React.Component {
+
+  openChannels() {
+    ipcRenderer.send('open-browser', 'https://www.twitch.tv/directory/all');
+  }
+
   render() {
     return (
       <div>
@@ -20,6 +27,7 @@ class Channels extends React.Component {
           <div className="clearfix"></div>
         </section>
         <Table data={ this.props.store.streams.channels } />
+        <a className="all-channels" onClick={ this.openChannels }>View more.</a>
       </div>
     );
   }
