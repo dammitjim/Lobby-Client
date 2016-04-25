@@ -11,7 +11,7 @@ class Followed extends React.Component {
   render() {
     return (
       <div>
-        <section className="table-header">
+        <section className="table-header" id="table-header">
           <h2>Following</h2>
         </section>
         <Table data={ this.props.store.streams.followed }/>

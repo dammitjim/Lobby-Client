@@ -1,6 +1,10 @@
 .table-header {
   background: darken($twitch-purple, 15%);
   padding: 20px;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 
   h2 {
     color: $primary-text;

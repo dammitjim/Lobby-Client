@@ -134,7 +134,11 @@ nav {
 
 .table-header {
   background: #432b6e;
-  padding: 20px; }
+  padding: 20px;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 100; }
   .table-header h2 {
     color: #fafafa;
     font-size: 14px;

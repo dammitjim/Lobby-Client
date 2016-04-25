@@ -10,7 +10,7 @@ class Games extends React.Component {
   render() {
     return (
       <div>
-        <section className="table-header">
+        <section className="table-header" id="table-header">
           <h2>Games</h2>
         </section>
       </div>

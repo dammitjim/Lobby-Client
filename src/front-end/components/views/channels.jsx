@@ -13,7 +13,7 @@ class Channels extends React.Component {
   render() {
     return (
       <div>
-        <section className="table-header">
+        <section className="table-header" id="table-header">
           <h2>Channels</h2>
           <a onClick={ refreshChannels }>Refresh</a>
         </section>

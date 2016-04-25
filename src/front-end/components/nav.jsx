@@ -10,7 +10,7 @@ class Nav extends React.Component {
   render() {
     return (
       <div>
-        <nav>
+        <nav id="nav">
           <ul>
             <li><Link to="/games" className="menu-link" activeClassName="active">G</Link></li>
             <li><Link to="/channels" className="menu-link" activeClassName="active">C</Link></li>
