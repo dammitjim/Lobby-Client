@@ -14,7 +14,7 @@ const pollInterval = 10000;
 
 // Create the menubar
 const bar = menubar({
-  index: 'file://' + __dirname + '/../front-end/index.html',
+  index: 'file://' + __dirname + '/../front-end/main-window/index.html',
   icon: process.cwd() + '/src/front-end/icons/purple_heart.png',
   width: 320,
   height: 640,
