@@ -1,16 +1,27 @@
 import React from 'react';
 import Electron from 'electron';
 import Table from './partials/table';
+import { viewChangedAction } from '../../state/actions';
+import { refreshChannels } from '../../util/refresh';
 
 import { connect } from 'react-redux';
 
 const ipcRenderer = Electron.ipcRenderer;
 const displayName = 'Channels';
 const propTypes = {
-  store: React.PropTypes.object.isRequired
+  store: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 class Channels extends React.Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(viewChangedAction({
+      title: 'Channels',
+      action: refreshChannels
+    }));
+  }
 
   openChannels() {
     ipcRenderer.send('open-browser', 'https://www.twitch.tv/directory/all');

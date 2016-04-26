@@ -5,8 +5,6 @@
  * @return Object state    - current application state
  */
 export function streams(state = { followed: [], channels: [], games: [] }, action) {
-  console.log('Streams reducer was called with state', state, 'and action', action);
-
   switch (action.type) {
     case 'LOADED_FOLLOWED_STREAMS':
       return Object.assign({}, state, {
@@ -19,6 +17,23 @@ export function streams(state = { followed: [], channels: [], games: [] }, actio
     case 'LOADED_GAMES':
       return Object.assign({}, state, {
         games: action.value
+      });
+    default:
+      return state;
+  }
+}
+
+/**
+ * Header stores header data for the UI
+ * @param  Object state - state to integrate
+ * @param  Object action - action data
+ * @return Object state - current application state
+ */
+export function header(state = { header: {} }, action) {
+  switch (action.type) {
+    case 'CHANGED_VIEW':
+      return Object.assign({}, state, {
+        header: action.value
       });
     default:
       return state;

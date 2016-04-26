@@ -24,3 +24,12 @@ export function gamesLoadedAction(data) {
     });
   };
 }
+
+export function viewChangedAction(data) {
+  return (dispatch) => {
+    dispatch({
+      type: 'CHANGED_VIEW',
+      value: data
+    });
+  };
+}

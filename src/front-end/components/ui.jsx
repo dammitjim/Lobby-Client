@@ -1,44 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
-
-import { refreshChannels, refreshFollowed, refreshGames } from '../util/refresh';
+import { connect } from 'react-redux';
 
 const displayName = 'UI';
 const propTypes = {
-  children: React.PropTypes.object
+  children: React.PropTypes.object,
+  store: React.PropTypes.object
 };
 
 class UI extends React.Component {
-
-  getHeaderData() {
-    const data = {};
-    data.title = '';
-    data.action = () => { return false; };
-
-    // TODO you're a bellend
-    switch (true) {
-      case /games/.test(window.location.hash):
-        data.title = 'Games';
-        data.action = refreshGames;
-        break;
-      case /channels/.test(window.location.hash):
-        data.title = 'Channels';
-        data.action = refreshChannels;
-        break;
-      case /followed/.test(window.location.hash):
-        data.title = 'Following';
-        data.action = refreshFollowed;
-        break;
-      default:
-        data.title = 'Following';
-        data.action = refreshFollowed;
-        break;
-    }
-    return data;
-  }
-
   render() {
-    const header = this.getHeaderData();
     return (
       <div>
         <nav id="nav">
@@ -49,8 +20,8 @@ class UI extends React.Component {
           </ul>
         </nav>
         <section className="table-header" id="table-header">
-          <h2>{ header.title }</h2>
-          <a className="refresh" onClick={ header.action }>R</a>
+          <h2>{ this.props.store.header.title }</h2>
+          <a className="refresh" onClick={ this.props.store.header.action }>R</a>
           <div className="clearfix"></div>
         </section>
         <div className="content" id="content">
@@ -65,7 +36,16 @@ class UI extends React.Component {
   }
 }
 
+
 UI.displayName = displayName;
 UI.propTypes = propTypes;
 
-export default UI;
+const mapStateToProps = (state) => {
+  return {
+    store: state.header
+  };
+};
+
+const con = connect(mapStateToProps)(UI);
+
+export default con;

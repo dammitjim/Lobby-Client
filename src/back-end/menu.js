@@ -19,8 +19,8 @@ const bar = menubar({
   width: 320,
   height: 640,
   showDockIcon: false,
-  resizable: false,
-  preloadWindow: true
+  resizable: false
+  // preloadWindow: true
 });
 
 
@@ -61,7 +61,6 @@ electron.app.on('ready', () => {
 
 export default function() {
   bar.continuePolling = true;
-  bar.window.resizable = false;
   menuactions.pollFollowed(bar);
   menuactions.getGames(bar);
   menuactions.getStreams(bar);

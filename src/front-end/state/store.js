@@ -5,7 +5,7 @@ import * as reducers from './reducers';
 
 function create(data) {
   const reducer = combineReducers(reducers);
-  const finalCreateStore = applyMiddleware(middleware.log, middleware.thunk)(createStore);
+  const finalCreateStore = applyMiddleware(middleware.thunk)(createStore);
   return finalCreateStore(reducer, data);
 }
 
