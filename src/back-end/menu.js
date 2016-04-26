@@ -67,7 +67,6 @@ electron.app.on('ready', () => {
 
 export default function() {
   bar.continuePolling = true;
-  configuration.initialise();
   menuactions.pollFollowed(bar);
   menuactions.getGames(bar);
   menuactions.getStreams(bar);
