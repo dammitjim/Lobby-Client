@@ -13,8 +13,11 @@ body {
   margin: 0; }
   body #mount {
     height: 100%;
-    overflow-y: overlay;
+    overflow: hidden;
     width: 100%; }
+  body .content {
+    height: 500px;
+    overflow-y: scroll; }
 
 html,
 body {
@@ -67,7 +70,7 @@ nav {
       display: table-cell; }
   nav .menu-link {
     display: block;
-    padding: 20px;
+    padding: 10px;
     text-align: center; }
     nav .menu-link:hover {
       background: #593a93; }
@@ -84,66 +87,72 @@ nav {
   width: 100%;
   z-index: 10; }
 
-.stream-row .top {
-  overflow: auto;
-  padding: 10px; }
-  .stream-row .top::after {
-    clear: both; }
-.stream-row .profile {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 14.70196%;
-  cursor: pointer; }
-  .stream-row .profile:last-child {
-    margin-right: 0; }
-  .stream-row .profile img {
-    height: auto;
-    width: 100%; }
-.stream-row .information {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 82.94039%; }
-  .stream-row .information:last-child {
-    margin-right: 0; }
-.stream-row .channel {
-  cursor: pointer;
-  display: block;
-  margin-bottom: 5px; }
-  .stream-row .channel:hover {
-    text-decoration: underline; }
-.stream-row .game {
-  display: block;
-  font-size: 13px; }
-.stream-row .detail {
-  cursor: pointer;
-  margin-top: 5px;
-  position: relative; }
-  .stream-row .detail:hover .viewers {
-    opacity: 1; }
-  .stream-row .detail .overlay {
-    background: linear-gradient(to bottom, #0e0e0e 0%, rgba(125, 125, 125, 0) 40%, rgba(125, 125, 125, 0) 60%, #0e0e0e 100%);
-    display: inline-block;
-    height: 180px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%; }
-  .stream-row .detail .viewers {
-    bottom: 10px;
-    color: #c8c8c8;
+.stream-row {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  overflow: hidden; }
+  .stream-row:first-child {
+    margin-top: 10px; }
+  .stream-row .top {
+    overflow: auto;
+    padding: 10px; }
+    .stream-row .top::after {
+      clear: both; }
+  .stream-row .profile {
+    float: left;
     display: block;
-    font-size: 14px;
-    left: 10px;
-    opacity: .5;
-    position: absolute;
-    transition: opacity .2s ease-in; }
-.stream-row img {
-  display: block;
-  height: auto;
-  width: 100%;
-  z-index: -1; }
+    margin-right: 2.35765%;
+    width: 14.70196%;
+    cursor: pointer; }
+    .stream-row .profile:last-child {
+      margin-right: 0; }
+    .stream-row .profile img {
+      height: auto;
+      width: 100%; }
+  .stream-row .information {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%; }
+    .stream-row .information:last-child {
+      margin-right: 0; }
+  .stream-row .channel {
+    cursor: pointer;
+    display: block;
+    margin-bottom: 5px; }
+    .stream-row .channel:hover {
+      text-decoration: underline; }
+  .stream-row .game {
+    display: block;
+    font-size: 13px; }
+  .stream-row .detail {
+    cursor: pointer;
+    margin-top: 5px;
+    position: relative; }
+    .stream-row .detail:hover .viewers {
+      opacity: 1; }
+    .stream-row .detail .overlay {
+      background: linear-gradient(to bottom, #0e0e0e 0%, rgba(125, 125, 125, 0) 40%, rgba(125, 125, 125, 0) 60%, #0e0e0e 100%);
+      display: inline-block;
+      height: 180px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%; }
+    .stream-row .detail .viewers {
+      bottom: 10px;
+      color: #c8c8c8;
+      display: block;
+      font-size: 14px;
+      left: 10px;
+      opacity: .5;
+      position: absolute;
+      transition: opacity .2s ease-in; }
+  .stream-row img {
+    display: block;
+    height: auto;
+    width: 100%;
+    z-index: -1; }
 
 .table-header {
   background: #432b6e;

@@ -31,12 +31,16 @@ $twitch-purple: #6441a5;
 
 body {
   margin: 0;
-  // overflow-y: overlay;
 
   #mount {
     height: 100%;
-    overflow-y: overlay;
+    overflow: hidden;
     width: 100%;
+  }
+
+  .content {
+    height: 500px;
+    overflow-y: scroll;
   }
 }
 

@@ -1,4 +1,12 @@
 .stream-row {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 10px;
+  }
+
   .top {
     overflow: auto;
     padding: 10px;

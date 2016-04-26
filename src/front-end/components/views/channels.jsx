@@ -1,7 +1,6 @@
 import React from 'react';
 import Electron from 'electron';
 import Table from './partials/table';
-import { refreshChannels } from '../../util/refresh';
 
 import { connect } from 'react-redux';
 
@@ -20,12 +19,6 @@ class Channels extends React.Component {
   render() {
     return (
       <div>
-        <section className="table-header" id="table-header">
-          <div id="back-to-top"></div>
-          <h2>Channels</h2>
-          <a className="refresh" onClick={ refreshChannels }>R</a>
-          <div className="clearfix"></div>
-        </section>
         <Table data={ this.props.store.streams.channels } />
         <a className="all-channels" onClick={ this.openChannels }>View more.</a>
       </div>

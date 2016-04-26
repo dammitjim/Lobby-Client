@@ -10,11 +10,6 @@ class Games extends React.Component {
   render() {
     return (
       <div>
-        <section className="table-header" id="table-header">
-          <div id="back-to-top"></div>
-          <h2>Games</h2>
-          <div className="clearfix"></div>
-        </section>
       </div>
     );
   }
