@@ -3,35 +3,42 @@ import { Link } from 'react-router';
 
 import { refreshChannels, refreshFollowed, refreshGames } from '../util/refresh';
 
-const displayName = 'Navigation';
+const displayName = 'UI';
 const propTypes = {
   children: React.PropTypes.object
 };
 
-class Nav extends React.Component {
+class UI extends React.Component {
 
-  render() {
-    let title = '';
-    let action = () => { return false; };
+  getHeaderData() {
+    const data = {};
+    data.title = '';
+    data.action = () => { return false; };
 
     // TODO you're a bellend
     switch (true) {
       case /games/.test(window.location.hash):
-        title = 'Games';
-        action = refreshGames;
+        data.title = 'Games';
+        data.action = refreshGames;
         break;
       case /channels/.test(window.location.hash):
-        title = 'Channels';
-        action = refreshChannels;
+        data.title = 'Channels';
+        data.action = refreshChannels;
         break;
       case /followed/.test(window.location.hash):
-        title = 'Following';
-        action = refreshFollowed;
+        data.title = 'Following';
+        data.action = refreshFollowed;
         break;
       default:
+        data.title = 'Following';
+        data.action = refreshFollowed;
         break;
     }
+    return data;
+  }
 
+  render() {
+    const header = this.getHeaderData();
     return (
       <div>
         <nav id="nav">
@@ -42,19 +49,23 @@ class Nav extends React.Component {
           </ul>
         </nav>
         <section className="table-header" id="table-header">
-          <h2>{ title }</h2>
-          <a className="refresh" onClick={ action }>R</a>
+          <h2>{ header.title }</h2>
+          <a className="refresh" onClick={ header.action }>R</a>
           <div className="clearfix"></div>
         </section>
         <div className="content" id="content">
           { this.props.children }
         </div>
+        <footer>
+          <span className="company-slogan">Made by Jim in Bristol</span>
+          <a className="settings">C</a>
+        </footer>
       </div>
     );
   }
 }
 
-Nav.displayName = displayName;
-Nav.propTypes = propTypes;
+UI.displayName = displayName;
+UI.propTypes = propTypes;
 
-export default Nav;
+export default UI;

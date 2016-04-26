@@ -16,7 +16,7 @@ body {
     overflow: hidden;
     width: 100%; }
   body .content {
-    height: 500px;
+    height: 510px;
     overflow-y: scroll; }
 
 html,
@@ -39,6 +39,19 @@ body {
     clear: both;
     content: "";
     display: table; }
+
+footer {
+  background: #fafafa;
+  color: #909090;
+  font-size: 12px;
+  padding: 10px 15px;
+  width: 100%; }
+  footer:after {
+    clear: both; }
+  footer .company-slogan {
+    float: left; }
+  footer .settings {
+    float: right; }
 
 .all-channels {
   background: #6441a5;

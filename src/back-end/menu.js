@@ -17,9 +17,12 @@ const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/index.html',
   icon: process.cwd() + '/src/front-end/icons/purple_heart.png',
   width: 320,
-  height: 600,
-  showDockIcon: false
+  height: 640,
+  showDockIcon: false,
+  resizable: false,
+  preloadWindow: true
 });
+
 
 // Message sent from the renderer process to open the twitch stream in native browser
 ipcMain.on('open-browser', (event, url) => {
@@ -58,6 +61,7 @@ electron.app.on('ready', () => {
 
 export default function() {
   bar.continuePolling = true;
+  bar.window.resizable = false;
   menuactions.pollFollowed(bar);
   menuactions.getGames(bar);
   menuactions.getStreams(bar);
