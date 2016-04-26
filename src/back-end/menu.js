@@ -6,6 +6,8 @@ import open from 'open';
 import * as menuactions from './menu/actions';
 import log from './util/logging';
 
+import * as configuration from './configuration';
+
 // Process control
 const ipcMain = electron.ipcMain;
 
@@ -17,7 +19,7 @@ const bar = menubar({
   index: 'file://' + __dirname + '/../front-end/main-window/index.html',
   icon: process.cwd() + '/src/front-end/icons/purple_heart.png',
   width: 320,
-  height: 640,
+  height: 660,
   showDockIcon: false,
   resizable: false
   // preloadWindow: true
@@ -28,6 +30,10 @@ const bar = menubar({
 ipcMain.on('open-browser', (event, url) => {
   log.info('Opening %s in browser.', url);
   open(url);
+});
+
+ipcMain.on('open-configuration', (event) => {
+  configuration.show();
 });
 
 ipcMain.on('view-loaded', (event) => {
@@ -61,6 +67,7 @@ electron.app.on('ready', () => {
 
 export default function() {
   bar.continuePolling = true;
+  configuration.initialise();
   menuactions.pollFollowed(bar);
   menuactions.getGames(bar);
   menuactions.getStreams(bar);

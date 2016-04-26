@@ -1,6 +1,9 @@
 import React from 'react';
+import Electron from 'electron';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+
+const ipcRenderer = Electron.ipcRenderer;
 
 const displayName = 'UI';
 const propTypes = {
@@ -9,6 +12,11 @@ const propTypes = {
 };
 
 class UI extends React.Component {
+
+  openConfig() {
+    ipcRenderer.send('open-configuration');
+  }
+
   render() {
     return (
       <div>
@@ -29,7 +37,7 @@ class UI extends React.Component {
         </div>
         <footer>
           <span className="company-slogan">Made by Jim in Bristol</span>
-          <a className="settings">C</a>
+          <a className="settings" onClick={ this.openConfig }>C</a>
         </footer>
       </div>
     );

@@ -1,0 +1,28 @@
+.config-window {
+  @include outer-container;
+
+  button {
+    background-color: $twitch-purple;
+    left: 10px;
+    position: relative;
+    top: 10px;
+
+    &:hover {
+      background-color: darken($twitch-purple, 10%);
+    }
+  }
+
+  .config-settings {
+    @include span-columns(8);
+    @include shift(1);
+    margin-top: 20px;
+  }
+
+  .form-submit {
+    margin-top: 20px;
+  }
+}
+
+#config-body {
+  background: #f5f5f5;
+}
