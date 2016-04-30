@@ -235,8 +235,6 @@ footer {
     clear: both; }
   footer .company-slogan {
     float: left; }
-  footer .settings {
-    float: right; }
 
 .all-channels {
   background: #6441a5;
@@ -367,15 +365,6 @@ nav {
     top: 10px; }
     .config-window button:hover {
       background-color: #4e3380; }
-  .config-window .config-settings {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 65.88078%;
-    margin-left: 8.5298%;
-    margin-top: 20px; }
-    .config-window .config-settings:last-child {
-      margin-right: 0; }
   .config-window .form-submit {
     margin-top: 20px; }
 

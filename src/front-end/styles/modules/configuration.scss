@@ -12,12 +12,6 @@
     }
   }
 
-  .config-settings {
-    @include span-columns(8);
-    @include shift(1);
-    margin-top: 20px;
-  }
-
   .form-submit {
     margin-top: 20px;
   }

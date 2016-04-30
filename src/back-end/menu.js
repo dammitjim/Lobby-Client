@@ -6,8 +6,6 @@ import open from 'open';
 import * as menuactions from './menu/actions';
 import log from './util/logging';
 
-import * as configuration from './configuration';
-
 // Process control
 const ipcMain = electron.ipcMain;
 
@@ -30,10 +28,6 @@ const bar = menubar({
 ipcMain.on('open-browser', (event, url) => {
   log.info('Opening %s in browser.', url);
   open(url);
-});
-
-ipcMain.on('open-configuration', (event) => {
-  configuration.show();
 });
 
 ipcMain.on('view-loaded', (event) => {

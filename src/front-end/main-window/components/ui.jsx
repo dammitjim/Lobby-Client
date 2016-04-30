@@ -22,9 +22,9 @@ class UI extends React.Component {
       <div>
         <nav id="nav">
           <ul>
-            <li><Link to="/games" className="menu-link" activeClassName="active">G</Link></li>
-            <li><Link to="/channels" className="menu-link" activeClassName="active">C</Link></li>
-            <li><Link to="/followed" className="menu-link" activeClassName="active">F</Link></li>
+            <li><Link to="/followed" className="menu-link" activeClassName="active">followed</Link></li>
+            <li><Link to="/channels" className="menu-link" activeClassName="active">channels</Link></li>
+            <li><Link to="/config" className="menu-link" activeClassName="active">config</Link></li>
           </ul>
         </nav>
         <section className="table-header" id="table-header">
@@ -37,7 +37,6 @@ class UI extends React.Component {
         </div>
         <footer>
           <span className="company-slogan">Made by Jim in Bristol</span>
-          <a className="settings" onClick={ this.openConfig }>C</a>
         </footer>
       </div>
     );
