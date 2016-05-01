@@ -3,6 +3,7 @@ import { notify } from '../util/notifications';
 import log from '../util/logging';
 
 import * as api from '../api/api';
+import { credentials } from '../api/credentials';
 import * as menulib from './lib';
 
 import * as _ from 'lodash';
@@ -26,6 +27,10 @@ export function targetAvailable(target) {
  * @param  BrowserWindow target
  */
 export function pollFollowed(target) {
+  if (!credentials.access_token) {
+    // Return if no access token has been set
+    return;
+  }
   if (target.continuePolling) {
     api.call('streams/followed', authenticate, (err, data) => {
       // If we have previous data to compare, check to see if anybody new is streaming

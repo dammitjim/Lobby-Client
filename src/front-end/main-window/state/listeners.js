@@ -18,6 +18,11 @@ function getStreamPreview(template) {
 
 function extractStreamData(json) {
   const d = JSON.parse(json);
+
+  if (!d) {
+    return [];
+  }
+
   const streams = [];
 
   // Extract what we need

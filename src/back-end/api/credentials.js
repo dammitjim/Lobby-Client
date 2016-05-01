@@ -10,9 +10,9 @@ const credentials = {
   access_token: null
 };
 
-if (conf.get('access_token') !== undefined) {
-  credentials.access_token = conf.get('access_token');
-}
+// if (conf.get('access_token') !== undefined) {
+//   credentials.access_token = conf.get('access_token');
+// }
 
 /**
  * Sets the access token in credentials

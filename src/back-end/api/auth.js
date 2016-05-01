@@ -7,8 +7,6 @@ import log from '../util/logging';
 const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
 const scopes = ['user_read', 'channel_read'];
 
-log.info('Api credentials', credentials);
-
 /**
  * Handles the callback from Twitch on 'will-navigate'
  * @param  String   - url
