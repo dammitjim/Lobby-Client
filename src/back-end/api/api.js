@@ -44,7 +44,6 @@ function generateRequest(endpoint, filters, requiresAuth = false) {
     port: options.api.port,
     path: options.api.path + endpoint,
     headers: {
-      client_id: credentials.client_id,
       accept: '*/*'
     },
     method: 'GET'
@@ -69,7 +68,7 @@ function fire(req, callback) {
     callback(Error(req.error), undefined);
   } else {
     log.info('Firing request', req);
-    http.get(req, (response) => {
+    const r = http.get(req, (response) => {
       let data = '';
 
       // Load data into chunks and append to the data
@@ -81,6 +80,9 @@ function fire(req, callback) {
         // Send the parsed object to the callback
         callback(undefined, JSON.parse(data));
       });
+    });
+    r.on('error', (error) => {
+      log.error(error);
     });
   }
 }
