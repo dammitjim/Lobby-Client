@@ -3,6 +3,7 @@ import { IndexRoute, Router, Route } from 'react-router';
 
 import Followed from './views/followed';
 import Channels from './views/channels';
+import Configuration from './views/config';
 import UI from './ui';
 
 import { refreshChannels, refreshFollowed } from '../util/refresh';
@@ -17,7 +18,7 @@ class Routes extends React.Component {
           <IndexRoute component={Followed} onEnter={refreshFollowed}/>
           <Route path="/followed" component={Followed} onEnter={refreshFollowed}/>
           <Route path="/channels" component={Channels} onEnter={refreshChannels}/>
-          <Route path="/config"/>
+          <Route path="/config" component={Configuration} />
         </Route>
       </Router>
     );

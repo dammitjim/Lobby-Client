@@ -39,3 +39,20 @@ export function header(state = { header: {} }, action) {
       return state;
   }
 }
+
+/**
+ * Config stores the application's configuration
+ * @param  Object state - state to integrate
+ * @param  Object action - action data
+ * @return Object state - current application state
+ */
+export function config(state = { config: {} }, action) {
+  switch (action.type) {
+    case 'CONFIG_SAVED':
+      return Object.assign({}, state, {
+        config: action.value
+      });
+    default:
+      return state;
+  }
+}

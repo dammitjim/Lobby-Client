@@ -27,11 +27,6 @@ class UI extends React.Component {
             <li><Link to="/config" className="menu-link" activeClassName="active">config</Link></li>
           </ul>
         </nav>
-        <section className="table-header" id="table-header">
-          <h2>{ this.props.store.header.title }</h2>
-          <a className="refresh" onClick={ this.props.store.header.action }>R</a>
-          <div className="clearfix"></div>
-        </section>
         <div className="content" id="content">
           { this.props.children }
         </div>
@@ -43,7 +38,17 @@ class UI extends React.Component {
   }
 }
 
-
+// let refresh = {};
+// if (this.props.store.header.action !== null) {
+//   refresh = <a className="refresh" onClick={ this.props.store.header.action }>R</a>;
+// } else {
+//   refresh = '';
+// }
+// <section className="table-header" id="table-header">
+//     <h2>{ this.props.store.header.title }</h2>
+//     { refresh }
+//     <div className="clearfix"></div>
+//   </section>
 UI.displayName = displayName;
 UI.propTypes = propTypes;
 

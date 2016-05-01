@@ -47,6 +47,10 @@ ipcMain.on('get-followed', (event) => {
   menuactions.pollFollowed(bar);
 });
 
+ipcMain.on('config-saved', (event, config) => {
+  menuactions.saveConfig(config);
+});
+
 electron.app.on('ready', () => {
   // Stop polling on suspend
   electron.powerMonitor.on('suspend', () => {

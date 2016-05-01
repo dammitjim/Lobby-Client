@@ -26,10 +26,12 @@ nav {
 
     &:hover {
       background: darken($twitch-purple, 5%);
+      color: $primary-text;
     }
 
     &.active {
       background: darken($twitch-purple, 20%);
+      color: $primary-text;
     }
   }
 

@@ -201,7 +201,7 @@ body {
     overflow: hidden;
     width: 100%; }
   body .content {
-    height: 510px;
+    height: 580px;
     overflow-y: scroll; }
 
 html,
@@ -269,9 +269,11 @@ nav {
     padding: 10px;
     text-align: center; }
     nav .menu-link:hover {
-      background: #593a93; }
+      background: #593a93;
+      color: #fafafa; }
     nav .menu-link.active {
-      background: #38245c; }
+      background: #38245c;
+      color: #fafafa; }
 
 .title-bar {
   background: linear-gradient(top, #fafafa 0%, #cfcfcf 100%);

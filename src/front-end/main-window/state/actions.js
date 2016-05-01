@@ -33,3 +33,12 @@ export function viewChangedAction(data) {
     });
   };
 }
+
+export function configSavedAction(data) {
+  return (dispatch) => {
+    dispatch({
+      type: 'CONFIG_SAVED',
+      value: data
+    });
+  };
+}
