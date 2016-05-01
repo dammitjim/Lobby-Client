@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { viewChangedAction } from '../../state/actions';
 import { refreshFollowed } from '../../util/refresh';
 
+import Electron from 'electron';
+const ipcRenderer = Electron.ipcRenderer;
+
 const displayName = 'Followed Streams';
 const propTypes = {
   store: React.PropTypes.object.isRequired,
@@ -20,11 +23,21 @@ class Followed extends React.Component {
     }));
   }
 
+  openAuthWindow() {
+    ipcRenderer.send('initiate-auth');
+  }
+
   render() {
+    if (this.props.store.config.config.authenticated) {
+      return (
+        <div>
+          <Table data={ this.props.store.streams.followed }/>
+        </div>
+      );
+    }
+
     return (
-      <div>
-        <Table data={ this.props.store.streams.followed }/>
-      </div>
+      <button onClick={this.openAuthWindow}>Authenticate</button>
     );
   }
 }

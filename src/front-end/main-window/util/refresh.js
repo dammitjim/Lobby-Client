@@ -9,3 +9,7 @@ export function refreshChannels() {
 export function refreshFollowed() {
   ipcRenderer.send('get-followed');
 }
+
+export function loadConfig() {
+  ipcRenderer.send('load-config');
+}

@@ -1,7 +1,7 @@
 import Electron from 'electron';
 
 import Store from './store';
-import * as actionCreators from './actions';
+import * as actions from './actions';
 
 const ipcRenderer = Electron.ipcRenderer;
 
@@ -46,17 +46,22 @@ function extractStreamData(json) {
 // Fired when the main thread receives a response from the api
 ipcRenderer.on('loaded-followed-streams', (event, data) => {
   const streams = extractStreamData(data);
-  Store.dispatch(actionCreators.followedStreamsLoadedAction(streams));
+  Store.dispatch(actions.followedStreamsLoadedAction(streams));
 });
 
 ipcRenderer.on('loaded-channel-streams', (event, data) => {
   const streams = extractStreamData(data);
-  Store.dispatch(actionCreators.channelStreamsLoadedAction(streams));
+  Store.dispatch(actions.channelStreamsLoadedAction(streams));
 });
 
 ipcRenderer.on('loaded-games', (event, data) => {
   const games = JSON.parse(data);
-  Store.dispatch(actionCreators.gamesLoadedAction(games));
+  Store.dispatch(actions.gamesLoadedAction(games));
 });
 
-export default ['loaded-followed-streams', 'loaded-channel-streams', 'loaded-games'];
+ipcRenderer.on('reloaded-config', (event, data) => {
+  const config = JSON.parse(data);
+  Store.dispatch(actions.configReloadedAction(config));
+});
+
+export default ['loaded-followed-streams', 'loaded-channel-streams', 'loaded-games', 'reloaded-config'];

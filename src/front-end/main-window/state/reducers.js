@@ -52,6 +52,10 @@ export function config(state = { config: {} }, action) {
       return Object.assign({}, state, {
         config: action.value
       });
+    case 'CONFIG_RELOADED':
+      return Object.assign({}, state, {
+        config: action.value
+      });
     default:
       return state;
   }

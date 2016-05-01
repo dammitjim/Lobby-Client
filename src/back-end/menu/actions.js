@@ -4,6 +4,7 @@ import log from '../util/logging';
 
 import * as api from '../api/api';
 import { credentials } from '../api/credentials';
+import config from '../config';
 import * as menulib from './lib';
 
 import * as _ from 'lodash';
@@ -94,4 +95,13 @@ export function getStreams(target, game) {
       target.window.webContents.send('loaded-channel-streams', JSON.stringify(data));
     }
   });
+}
+
+/**
+ * Gets the current configuration and sends it to the target
+ */
+export function getConfiguration(target) {
+  if (targetAvailable(target)) {
+    target.window.webContents.send('reloaded-config', JSON.stringify(config));
+  }
 }

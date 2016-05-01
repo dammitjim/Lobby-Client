@@ -42,3 +42,12 @@ export function configSavedAction(data) {
     });
   };
 }
+
+export function configReloadedAction(data) {
+  return (dispatch) => {
+    dispatch({
+      type: 'CONFIG_RELOADED',
+      value: data
+    });
+  };
+}

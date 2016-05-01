@@ -6,11 +6,16 @@ import Channels from './views/channels';
 import Configuration from './views/config';
 import UI from './ui';
 
-import { refreshChannels, refreshFollowed } from '../util/refresh';
+import { refreshChannels, refreshFollowed, loadConfig } from '../util/refresh';
 
 const displayName = 'Router';
 
 class Routes extends React.Component {
+
+  componentDidMount() {
+    loadConfig();
+  }
+
   render() {
     return (
       <Router>

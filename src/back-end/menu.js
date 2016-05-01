@@ -51,6 +51,14 @@ ipcMain.on('config-saved', (event, config) => {
   menuactions.saveConfig(config);
 });
 
+ipcMain.on('load-config', (event) => {
+  menuactions.getConfiguration(bar);
+});
+
+ipcMain.on('initiate-auth', (event) => {
+  console.log('Initiate auth');
+})
+
 electron.app.on('ready', () => {
   // Stop polling on suspend
   electron.powerMonitor.on('suspend', () => {
@@ -74,11 +82,6 @@ export default function() {
   }, pollInterval);
 
   bar.on('after-create-window', () => {
-    setTimeout(() => {
-      log.info('Sending loaded-followed-streams to menubar');
-      bar.window.webContents.send('loaded-followed-streams', JSON.stringify(bar.polledData));
-    }, pollInterval);
-
     bar.window.openDevTools({ detach: true });
   });
 
