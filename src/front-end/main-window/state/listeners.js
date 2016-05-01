@@ -20,6 +20,7 @@ function extractStreamData(json) {
   const d = JSON.parse(json);
 
   if (!d) {
+    // lol if no d
     return [];
   }
 
