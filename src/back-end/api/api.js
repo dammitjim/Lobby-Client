@@ -1,6 +1,7 @@
 import { credentials } from './credentials';
+import options from '../options';
 import log from '../util/logging';
-import https from 'https';
+import http from 'http';
 
 /**
  * Apply filters to the given url path
@@ -39,8 +40,9 @@ function applyFilters(filters, path) {
  */
 function generateRequest(endpoint, filters, requiresAuth = false) {
   const req = {
-    host: 'api.twitch.tv',
-    path: '/kraken/' + endpoint,
+    host: options.api.host,
+    port: options.api.port,
+    path: options.api.path + endpoint,
     headers: {
       client_id: credentials.client_id,
       accept: '*/*'
@@ -67,7 +69,7 @@ function fire(req, callback) {
     callback(Error(req.error), undefined);
   } else {
     log.info('Firing request', req);
-    https.get(req, (response) => {
+    http.get(req, (response) => {
       let data = '';
 
       // Load data into chunks and append to the data
