@@ -39,6 +39,7 @@ function applyFilters(filters, path) {
  * @return Object
  */
 function generateRequest(endpoint, filters, requiresAuth = false) {
+  // TODO use request library
   const req = {
     host: options.api.host,
     port: options.api.port,

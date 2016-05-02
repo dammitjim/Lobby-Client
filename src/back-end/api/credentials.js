@@ -5,7 +5,6 @@ const conf = new Configstore('lobby');
 
 const credentials = {
   client_id: auth.client_id,
-  client_secret: auth.client_secret,
   redirect_url: auth.redirect_url,
   access_token: null
 };

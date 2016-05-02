@@ -1,11 +1,12 @@
-import https from 'https';
-import querystring from 'querystring';
 import electron from 'electron';
+import request from 'request';
+
 import { saveAccessToken, credentials } from './credentials';
+import options from '../options';
 import log from '../util/logging';
 
 const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
-const scopes = ['user_read', 'channel_read'];
+const scopes = ['user_read'];
 
 /**
  * Handles the callback from Twitch on 'will-navigate'
@@ -17,48 +18,23 @@ function handleAuthCallback(url, callback) {
   const raw = /code=([^&]*)/.exec(url) || null;
   const c = (raw && raw.length > 1) ? raw[1] : null;
 
-  // Data to be sent when requestion an auth token
-  const postData = querystring.stringify({
-    client_id: credentials.client_id,
-    client_secret: credentials.client_secret,
-    grant_type: 'authorization_code',
-    redirect_uri: credentials.redirect_url,
-    code: c
+  const postData = { code: c };
+
+  // TODO clean
+  const nurl = `http://${options.api.host}:${options.api.port}${options.api.path}oauth2/token`;
+  request.post({ url: nurl, form: postData }, (err, httpResponse, body) => {
+    if (err) {
+      callback(null, err);
+    } else {
+      callback(JSON.parse(body), null);
+    }
   });
-
-  // Structure of the request
-  const reqMeta = {
-    host: 'api.twitch.tv',
-    path: '/kraken/oauth2/token',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': Buffer.byteLength(postData),
-      accept: '*/*'
-    },
-    method: 'POST'
-  };
-
-  // The request itself
-  const req = https.request(reqMeta, (response) => {
-    let data = '';
-    // Load data into chunks and append to the data
-    response.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    response.on('end', () => {
-      callback(JSON.parse(data));
-    });
-  });
-
-  req.write(postData);
-  req.end();
 }
 
 /**
  * Launches a twitch authentication window
  */
-export function InitiateAuthFlow() {
+export function initiateAuthFlow() {
   // Only allow if there is not already an auth_code set
   if (credentials.access_token === null) {
     // Construct a new window that sends the user to the twitch oauth page
@@ -81,16 +57,19 @@ export function InitiateAuthFlow() {
     authWindow.show();
 
     // When the window is due to navigate
-    authWindow.webContents.on('will-navigate', (e, url) => {
+    authWindow.webContents.on('did-navigate', (e, url) => {
       // We want to intercept the callback from twitch
       if (url.slice(0, 16) === 'http://localhost') {
         // Gets authentication token
-        handleAuthCallback(url, (data) => {
-          // Set the authentication token in the local storage
-          saveAccessToken(data.access_token);
+        handleAuthCallback(url, (data, err) => {
+          if (err) {
+            log.error(err);
+          } else {
+            // Set the authentication token in the local storage
+            saveAccessToken(data.access_token);
+            authWindow.close();
+          }
         });
-        e.preventDefault();
-        authWindow.close();
       }
     });
 

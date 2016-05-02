@@ -1,9 +1,9 @@
 import electron from 'electron';
-
 import menubar from 'menubar';
 import open from 'open';
 
 import * as menuactions from './menu/actions';
+import { initiateAuthFlow } from './api/auth';
 import log from './util/logging';
 
 // Process control
@@ -56,8 +56,8 @@ ipcMain.on('load-config', (event) => {
 });
 
 ipcMain.on('initiate-auth', (event) => {
-  console.log('Initiate auth');
-})
+  initiateAuthFlow();
+});
 
 electron.app.on('ready', () => {
   // Stop polling on suspend

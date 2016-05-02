@@ -1,13 +1,11 @@
 'use babel';
 import electron from 'electron';
 
-import * as auth from './back-end/api/auth';
 import menu from './back-end/menu';
 import log from './back-end/util/logging';
 
 const app = electron.app;  // Module to control application life.
 
-const ipcMain = electron.ipcMain;
 
 export function start() {
   // Keep a global reference of the window object, if you don't, the window will
@@ -36,6 +34,4 @@ export function start() {
     log.info('Creating menubar');
     menu();
   });
-
-  ipcMain.on('button-pressed', auth.InitiateAuthFlow);
 }
