@@ -4,6 +4,7 @@ import open from 'open';
 
 import * as menuactions from './menu/actions';
 import { initiateAuthFlow } from './api/auth';
+import { reloadConfig } from './config';
 import log from './util/logging';
 
 // Process control
@@ -56,7 +57,10 @@ ipcMain.on('load-config', (event) => {
 });
 
 ipcMain.on('initiate-auth', (event) => {
-  initiateAuthFlow();
+  initiateAuthFlow(() => {
+    reloadConfig();
+    menuactions.getConfiguration(bar);
+  });
 });
 
 electron.app.on('ready', () => {

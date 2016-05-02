@@ -34,7 +34,7 @@ function handleAuthCallback(url, callback) {
 /**
  * Launches a twitch authentication window
  */
-export function initiateAuthFlow() {
+export function initiateAuthFlow(callback) {
   // Only allow if there is not already an auth_code set
   if (credentials.access_token === null) {
     // Construct a new window that sends the user to the twitch oauth page
@@ -68,6 +68,9 @@ export function initiateAuthFlow() {
             // Set the authentication token in the local storage
             saveAccessToken(data.access_token);
             authWindow.close();
+            if (callback) {
+              callback();
+            }
           }
         });
       }

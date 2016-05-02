@@ -6,4 +6,8 @@ const config = {
   authenticated: (conf.get('access_token') !== undefined)
 };
 
+export function reloadConfig() {
+  config.authenticated = (conf.get('access_token') !== undefined);
+}
+
 export default config;
