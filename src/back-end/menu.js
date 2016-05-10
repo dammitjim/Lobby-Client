@@ -85,6 +85,7 @@ export default function() {
   let currentInterval = conf.poll_interval;
 
   // Constantly poll config for changes in polling option
+  // TODO sort this out at some point it's a bit of a dumpster fire
   setInterval(() => {
     conf = reloadConfig();
     if (conf.enable_polling) {
