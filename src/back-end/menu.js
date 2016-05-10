@@ -4,7 +4,7 @@ import open from 'open';
 
 import * as menuactions from './menu/actions';
 import { initiateAuthFlow } from './api/auth';
-import { reloadConfig } from './config';
+import { reloadConfig, saveConfig } from './config';
 import log from './util/logging';
 
 // Process control
@@ -48,8 +48,9 @@ ipcMain.on('get-followed', (event) => {
   menuactions.pollFollowed(bar);
 });
 
-ipcMain.on('config-saved', (event, config) => {
-  menuactions.saveConfig(config);
+ipcMain.on('save-config', (event, config) => {
+  saveConfig(config);
+  menuactions.getConfiguration(bar);
 });
 
 ipcMain.on('load-config', (event) => {
@@ -86,6 +87,7 @@ export default function() {
   }, pollInterval);
 
   bar.on('after-create-window', () => {
+    menuactions.getConfiguration(bar);
     bar.window.openDevTools({ detach: true });
   });
 
