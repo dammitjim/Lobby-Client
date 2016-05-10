@@ -19,11 +19,16 @@ if (conf.get('row_style') === undefined) {
   conf.set('row_style', 'big');
 }
 
+if (conf.get('poll_interval') === undefined) {
+  conf.set('poll_interval', 10000);
+}
+
 export function reloadConfig() {
   config.authenticated = (conf.get('access_token') !== undefined);
   config.enable_polling = conf.get('enable_polling');
   config.enable_notifications = conf.get('enable_notifications');
   config.row_style = conf.get('row_style');
+  config.poll_interval = conf.get('poll_interval');
   return config;
 }
 

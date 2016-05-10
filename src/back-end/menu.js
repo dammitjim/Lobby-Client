@@ -2,16 +2,13 @@ import electron from 'electron';
 import menubar from 'menubar';
 import open from 'open';
 
-import * as menuactions from './menu/actions';
 import { initiateAuthFlow } from './api/auth';
-import { reloadConfig, saveConfig } from './config';
+import * as menuactions from './menu/actions';
 import log from './util/logging';
+import { reloadConfig, saveConfig } from './config';
 
 // Process control
 const ipcMain = electron.ipcMain;
-
-// Interval to poll the api
-const pollInterval = 10000;
 
 // Create the menubar
 const bar = menubar({
@@ -48,8 +45,8 @@ ipcMain.on('get-followed', (event) => {
   menuactions.pollFollowed(bar);
 });
 
-ipcMain.on('save-config', (event, config) => {
-  saveConfig(config);
+ipcMain.on('save-config', (event, data) => {
+  saveConfig(data);
   menuactions.getConfiguration(bar);
 });
 
@@ -82,9 +79,26 @@ export default function() {
   menuactions.getGames(bar);
   menuactions.getStreams(bar);
 
+  // This feels a bit dirty
+  let conf = reloadConfig();
+  let pollInterval = 'no';
   setInterval(() => {
-    menuactions.pollFollowed(bar);
-  }, pollInterval);
+    conf = reloadConfig();
+    if (conf.enable_polling) {
+      if (pollInterval === 'no') {
+        log.info('Initialising followed poll');
+        pollInterval = setInterval(() => {
+          menuactions.pollFollowed(bar);
+        }, conf.poll_interval);
+      }
+    } else {
+      if (pollInterval !== 'no') {
+        log.info('Stopping followed poll');
+        clearInterval(pollInterval);
+        pollInterval = 'no';
+      }
+    }
+  }, 2000);
 
   bar.on('after-create-window', () => {
     menuactions.getConfiguration(bar);
