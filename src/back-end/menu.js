@@ -82,17 +82,30 @@ export default function() {
   // This feels a bit dirty
   let conf = reloadConfig();
   let pollInterval = null;
+  let currentInterval = conf.poll_interval;
 
   // Constantly poll config for changes in polling option
   setInterval(() => {
     conf = reloadConfig();
     if (conf.enable_polling) {
+      if (conf.poll_interval !== currentInterval) {
+        if (pollInterval !== null) {
+          log.info('Updating followed poll rate');
+          clearInterval(pollInterval);
+          currentInterval = conf.poll_interval;
+          pollInterval = setInterval(() => {
+            menuactions.pollFollowed(bar);
+          }, conf.poll_interval * 1000);
+        }
+      }
+
       if (pollInterval === null) {
         // If we aren't polling and it has been configured to, start the poll
         log.info('Initialising followed poll');
+        currentInterval = conf.poll_interval;
         pollInterval = setInterval(() => {
           menuactions.pollFollowed(bar);
-        }, conf.poll_interval);
+        }, conf.poll_interval * 1000);
       }
     } else {
       if (pollInterval !== null) {

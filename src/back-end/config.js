@@ -20,7 +20,7 @@ if (conf.get('row_style') === undefined) {
 }
 
 if (conf.get('poll_interval') === undefined) {
-  conf.set('poll_interval', 10000);
+  conf.set('poll_interval', 10);
 }
 
 export function reloadConfig() {

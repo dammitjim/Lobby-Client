@@ -57,6 +57,9 @@ class Configuration extends React.Component {
       case 'notifications':
         state.enable_notifications = event.target.checked;
         break;
+      case 'interval':
+        state.poll_interval = event.target.value;
+        break;
       default:
         break;
     }
@@ -86,6 +89,9 @@ class Configuration extends React.Component {
           <input type="checkbox" name="poll" checked={this.state.enable_polling} onChange={this.updateState} />Allow lobby to poll in the background
           <input type="radio" name="row-style-big" checked={this.state.row_style.big} onChange={this.updateState} />Big rows
           <input type="radio" name="row-style-compact" checked={this.state.row_style.compact} onChange={this.updateState} />Compact rows
+          <hr />
+          <label>Poll Interval</label>
+          <input type="range" name="interval" min="2" max="60" value={this.state.poll_interval} onChange={this.updateState} />{ this.state.poll_interval } seconds
           <input type="submit" value="Post" />
         </form>
       </div>
