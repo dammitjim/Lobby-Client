@@ -1,0 +1,34 @@
+.login {
+  color: white;
+  text-align: center;
+
+  button {
+    background-color: $twitch-purple;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 30px;
+    padding: 10px 40px;
+
+    &:hover {
+      background: darken($twitch-purple, 10%);
+    }
+  }
+
+  p {
+    font-feature-settings: 'liga';
+    font-size: 16px;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    text-rendering: optimizelegibility;
+    line-height: 1.40;
+    margin-top: 21px;
+    word-wrap: break-word;
+  }
+
+  .twitch {
+    margin-bottom: 20px;
+  }
+}

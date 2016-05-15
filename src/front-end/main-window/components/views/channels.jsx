@@ -29,7 +29,7 @@ class Channels extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="content" id="content">
         <Table data={ this.props.store.streams.channels } />
         <a className="all-channels" onClick={ this.openChannels }>View more.</a>
       </div>

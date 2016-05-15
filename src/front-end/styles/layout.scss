@@ -11,6 +11,18 @@
   padding-bottom: 10px;
 }
 
+.full-center {
+  margin-top: 25px;
+  padding: 30px;
+  width: 100%;
+}
+
+.full-wrapper {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
 footer {
   background: #fafafa;
   color: $table-text-color;

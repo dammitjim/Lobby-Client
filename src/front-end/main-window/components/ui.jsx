@@ -27,9 +27,7 @@ class UI extends React.Component {
             <li><Link to="/config" className="menu-link" activeClassName="active">config</Link></li>
           </ul>
         </nav>
-        <div className="content" id="content">
-          { this.props.children }
-        </div>
+        { this.props.children }
         <footer>
           <span className="company-slogan">Made by Jim in Bristol</span>
         </footer>

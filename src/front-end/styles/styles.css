@@ -40,6 +40,16 @@ body {
     content: "";
     display: block; }
 
+.full-center {
+  margin-top: 25px;
+  padding: 30px;
+  width: 100%; }
+
+.full-wrapper {
+  height: 100%;
+  overflow: hidden;
+  width: 100%; }
+
 footer {
   background: #fafafa;
   color: #909090;
@@ -50,6 +60,32 @@ footer {
     clear: both; }
   footer .company-slogan {
     float: left; }
+
+.login {
+  color: white;
+  text-align: center; }
+  .login button {
+    background-color: #6441a5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 30px;
+    padding: 10px 40px; }
+    .login button:hover {
+      background: #4e3380; }
+  .login p {
+    font-feature-settings: 'liga';
+    font-size: 16px;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    text-rendering: optimizelegibility;
+    line-height: 1.40;
+    margin-top: 21px;
+    word-wrap: break-word; }
+  .login .twitch {
+    margin-bottom: 20px; }
 
 .all-channels {
   background: #6441a5;
@@ -187,6 +223,9 @@ nav {
 
 #config-body {
   background: #f5f5f5; }
+
+.purple-bg {
+  background: #38245c; }
 
 .table-header {
   background: #432b6e;
