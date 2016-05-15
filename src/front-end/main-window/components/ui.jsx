@@ -3,6 +3,8 @@ import Electron from 'electron';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import Footer from './views/partials/footer';
+
 const ipcRenderer = Electron.ipcRenderer;
 
 const displayName = 'UI';
@@ -28,6 +30,7 @@ class UI extends React.Component {
           </ul>
         </nav>
         { this.props.children }
+        <Footer />
       </div>
     );
   }

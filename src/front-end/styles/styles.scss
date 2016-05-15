@@ -1,5 +1,6 @@
 @import 'vendor/bourbon/bourbon';
 @import 'vendor/neat/neat';
+@import 'vendor/font-awesome/font-awesome';
 
 @import 'base';
 @import 'layout';
@@ -7,6 +8,7 @@
 @import 'modules/authenticator';
 @import 'modules/buttons';
 @import 'modules/form';
+@import 'modules/footer';
 @import 'modules/menu';
 @import 'modules/nav';
 @import 'modules/streams';

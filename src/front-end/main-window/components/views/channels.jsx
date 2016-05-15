@@ -22,7 +22,11 @@ class Channels extends React.Component {
     const { dispatch } = this.props;
     dispatch(viewChangedAction({
       title: 'Channels',
-      action: refreshChannels
+      action: refreshChannels,
+      out: {
+        text: 'view on twitch',
+        url: 'https://www.twitch.tv/directory/all'
+      }
     }));
   }
 
@@ -32,15 +36,16 @@ class Channels extends React.Component {
 
   render() {
     return (
-      <div className="content" id="content">
-        <Header />
-        <Table data={ this.props.store.streams.channels } />
-        <a className="all-channels" onClick={ this.openChannels }>View more.</a>
+      <div>
+        <div className="content" id="content">
+          <Table data={ this.props.store.streams.channels } />
+        </div>
       </div>
     );
   }
 }
 
+        // <a className="all-channels" onClick={ this.openChannels }>View more.</a>
 Channels.displayName = displayName;
 
 const mapStateToProps = (state) => {

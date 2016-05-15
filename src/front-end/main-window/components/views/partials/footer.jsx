@@ -4,16 +4,15 @@ import { connect } from 'react-redux';
 
 const ipcRenderer = Electron.ipcRenderer;
 
-const displayName = 'Header';
+const displayName = 'Footer';
 const propTypes = {
   header: React.PropTypes.object.isRequired
 };
 
-class Header extends React.Component {
+class Footer extends React.Component {
 
   constructor() {
     super();
-
     this.openLink = this.openLink.bind(this);
   }
 
@@ -21,11 +20,14 @@ class Header extends React.Component {
     ipcRenderer.send('open-browser', this.props.header.options.out.url);
   }
 
-
   render() {
     let refresh = '';
     if (this.props.header.options.action !== null) {
-      refresh = <a className="refresh" onClick={ this.props.header.options.action }><i className="fa fa-refresh"></i></a>;
+      let classes = 'fa fa-refresh';
+      if (this.props.header.loader.loading === true) {
+        classes += ' fa-spin fa-fw';
+      }
+      refresh = <a className="refresh" onClick={ this.props.header.options.action }><i className={ classes }></i></a>;
     }
 
     let linkOut = '';
@@ -35,24 +37,24 @@ class Header extends React.Component {
       }
     }
 
+
     return (
-      <section className="table-header" id="table-header">
-          { refresh }
-          { linkOut }
-        <div className="clearfix"></div>
-      </section>
+      <footer>
+        { refresh }
+        { linkOut }
+      </footer>
     );
   }
 }
 
-Header.displayName = displayName;
+Footer.displayName = displayName;
 const mapStateToProps = (state) => {
   return {
     header: state.header
   };
 };
 
-const con = connect(mapStateToProps)(Header);
-Header.propTypes = propTypes;
+const con = connect(mapStateToProps)(Footer);
+Footer.propTypes = propTypes;
 
 export default con;

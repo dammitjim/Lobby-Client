@@ -20,16 +20,21 @@ class Followed extends React.Component {
     const { dispatch } = this.props;
     dispatch(viewChangedAction({
       title: 'Followed',
-      action: refreshFollowed
+      action: refreshFollowed,
+      out: {
+        text: 'view on twitch',
+        url: 'https://www.twitch.tv/directory/following'
+      }
     }));
   }
 
   render() {
     if (this.props.store.config.config.authenticated) {
       return (
-        <div className="content" id="content">
-          <Header />
-          <Table data={ this.props.store.streams.followed }/>
+        <div>
+          <div className="content" id="content">
+            <Table data={ this.props.store.streams.followed }/>
+          </div>
         </div>
       );
     }

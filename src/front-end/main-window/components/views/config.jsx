@@ -34,7 +34,7 @@ class Configuration extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(viewChangedAction({
-      title: 'Configuration',
+      title: '',
       action: null
     }));
   }

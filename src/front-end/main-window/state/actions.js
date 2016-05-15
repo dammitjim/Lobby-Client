@@ -51,3 +51,12 @@ export function configReloadedAction(data) {
     });
   };
 }
+
+export function reloadingState(data) {
+  return (dispatch) => {
+    dispatch({
+      type: 'CHANGE_RELOADING_STATE',
+      value: data
+    });
+  };
+}

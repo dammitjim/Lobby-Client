@@ -1,29 +1,46 @@
-.table-header {
-  background: darken($twitch-purple, 20%);
+.table-header, footer {
+  background: darken($twitch-purple, 15%);
   display: block;
-  padding: 15px 20px;
+  height: 50px;
   position: relative;
+  text-align: center;
   top: 0;
   width: 100%;
   z-index: 100;
 
-  h2 {
+  .refresh,
+  .link-out {
     color: $primary-text;
-    display: inline;
-    float: left;
+    cursor: pointer;
+    display: block;
     font-size: 14px;
     font-weight: bold;
-    margin-top: 5px;
+    height: 50px;
+    padding-top: 15px;
+    text-align: center;
+
+    span {
+      display: block;
+      padding-top: 5px;
+    }
+
+    i {
+      font-size: 1.5em;
+    }
+
+    &:hover {
+      background: darken($twitch-purple, 10%);
+    }
+  }
+
+  .link-out {
+    float: left;
+    width: 33.33%;
   }
 
   .refresh {
-    color: $primary-text;
-    cursor: pointer;
-    display: inline;
-    float: right;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 5px;
+    float: left;
+    width: 66.66%;
   }
 
   .clearfix {

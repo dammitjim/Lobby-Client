@@ -1,0 +1,39 @@
+footer {
+  @include outer-container();
+
+  background-color: white;
+  position: relative;
+  z-index: 999;
+
+  .footer-col-8 {
+    @include span-columns(8);
+    margin-right: 0;
+    text-align: center;
+
+    a {
+      background-color: $twitch-purple;
+      color: white;
+      cursor: pointer;
+      display: block;
+      font-weight: bold;
+      padding: 5px 0;
+      width: 100%;
+    }
+  }
+
+  .footer-col-4 {
+    @include span-columns(4);
+    margin-right: 0;
+    text-align: center;
+
+    a {
+      background-color: $twitch-purple;
+      color: white;
+      cursor: pointer;
+      display: block;
+      font-weight: bold;
+      padding: 5px 0;
+      width: 100%;
+    }
+  }
+}
