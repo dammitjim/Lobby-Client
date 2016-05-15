@@ -4,7 +4,7 @@ import log from '../util/logging';
 
 import * as api from '../api/api';
 import { credentials } from '../api/credentials';
-import { reloadConfig } from '../config';
+import * as config from '../config';
 import * as menulib from './lib';
 
 import * as _ from 'lodash';
@@ -101,7 +101,15 @@ export function getStreams(target, game) {
  * Gets the current configuration and sends it to the target
  */
 export function getConfiguration(target) {
-  const conf = reloadConfig();
+  const conf = config.reloadConfig();
+  if (targetAvailable(target)) {
+    target.window.webContents.send('reloaded-config', JSON.stringify(conf));
+  }
+}
+
+export function signOut(target) {
+  config.signOut();
+  const conf = config.reloadConfig();
   if (targetAvailable(target)) {
     target.window.webContents.send('reloaded-config', JSON.stringify(conf));
   }

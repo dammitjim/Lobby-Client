@@ -42,3 +42,17 @@
     }
   }
 }
+
+.sign-out {
+  background-color: $red;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 10px 40px;
+  width: 100%;
+
+  &:hover {
+    background: darken($red, 10%);
+  }
+}

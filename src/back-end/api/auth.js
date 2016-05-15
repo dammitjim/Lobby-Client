@@ -1,7 +1,7 @@
 import electron from 'electron';
 import request from 'request';
 
-import { saveAccessToken, credentials } from './credentials';
+import { reloadCredentials, saveAccessToken, credentials } from './credentials';
 import options from '../options';
 import log from '../util/logging';
 
@@ -35,8 +35,9 @@ function handleAuthCallback(url, callback) {
  * Launches a twitch authentication window
  */
 export function initiateAuthFlow(callback) {
+  const creds = reloadCredentials();
   // Only allow if there is not already an auth_code set
-  if (credentials.access_token === null) {
+  if (creds.access_token === null) {
     // Construct a new window that sends the user to the twitch oauth page
     let authWindow = new BrowserWindow({
       width: 800,

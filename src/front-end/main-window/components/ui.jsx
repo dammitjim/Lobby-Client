@@ -30,7 +30,6 @@ class UI extends React.Component {
           </ul>
         </nav>
         { this.props.children }
-        <Footer />
       </div>
     );
   }

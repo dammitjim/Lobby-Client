@@ -46,4 +46,8 @@ export function saveConfig(data) {
   return reloadConfig();
 }
 
+export function signOut() {
+  conf.del('access_token');
+}
+
 export default config;

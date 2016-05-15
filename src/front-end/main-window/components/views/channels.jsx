@@ -2,7 +2,7 @@ import React from 'react';
 import Electron from 'electron';
 
 import Table from './partials/table';
-import Header from './partials/header';
+import Footer from './partials/footer';
 
 import { viewChangedAction } from '../../state/actions';
 import { refreshChannels } from '../../util/refresh';
@@ -40,6 +40,7 @@ class Channels extends React.Component {
         <div className="content" id="content">
           <Table data={ this.props.store.streams.channels } />
         </div>
+        <Footer />
       </div>
     );
   }

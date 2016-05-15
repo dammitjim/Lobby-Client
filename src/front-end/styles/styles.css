@@ -2305,6 +2305,17 @@ body {
     .configuration-form .submit:hover {
       background: #4e3380; }
 
+.sign-out {
+  background-color: #a40802;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 10px 40px;
+  width: 100%; }
+  .sign-out:hover {
+    background: #720601; }
+
 footer {
   bottom: 0;
   opacity: .98;

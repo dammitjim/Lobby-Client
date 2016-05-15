@@ -2,7 +2,7 @@ import React from 'react';
 
 import Table from './partials/table';
 import Login from './partials/login';
-import Header from './partials/header';
+import Footer from './partials/footer';
 
 import { connect } from 'react-redux';
 import { viewChangedAction } from '../../state/actions';
@@ -35,6 +35,7 @@ class Followed extends React.Component {
           <div className="content" id="content">
             <Table data={ this.props.store.streams.followed }/>
           </div>
+          <Footer />
         </div>
       );
     }
