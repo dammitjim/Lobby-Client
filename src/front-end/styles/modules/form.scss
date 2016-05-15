@@ -1,0 +1,44 @@
+.configuration-form {
+  color: black;
+
+  hr {
+    margin: 40px 0;
+  }
+
+  label {
+    display: inline;
+  }
+
+  .newline-label {
+    display: block;
+  }
+
+  .checkbox {
+    display: inline-block;
+    float: right;
+  }
+
+  .fieldset {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .input-range {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .submit {
+    background-color: $twitch-purple;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    margin-top: 30px;
+    padding: 10px 40px;
+    width: 100%;
+
+    &:hover {
+      background: darken($twitch-purple, 10%);
+    }
+  }
+}

@@ -76,13 +76,12 @@ footer {
   .login p {
     font-feature-settings: 'liga';
     font-size: 16px;
-    -moz-osx-font-smoothing: grayscale;
     font-style: normal;
     font-weight: 400;
     letter-spacing: -.01em;
-    text-rendering: optimizelegibility;
     line-height: 1.40;
     margin-top: 21px;
+    text-rendering: optimizelegibility;
     word-wrap: break-word; }
   .login .twitch {
     margin-bottom: 20px; }
@@ -100,6 +99,34 @@ footer {
   width: 100%; }
   .all-channels:hover {
     background: #4e3380; }
+
+.configuration-form {
+  color: black; }
+  .configuration-form hr {
+    margin: 40px 0; }
+  .configuration-form label {
+    display: inline; }
+  .configuration-form .newline-label {
+    display: block; }
+  .configuration-form .checkbox {
+    display: inline-block;
+    float: right; }
+  .configuration-form .fieldset {
+    display: block;
+    margin: 10px 0; }
+  .configuration-form .input-range {
+    margin: 10px 0;
+    width: 100%; }
+  .configuration-form .submit {
+    background-color: #6441a5;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    margin-top: 30px;
+    padding: 10px 40px;
+    width: 100%; }
+    .configuration-form .submit:hover {
+      background: #4e3380; }
 
 nav {
   background: #6441a5;

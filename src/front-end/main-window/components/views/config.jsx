@@ -82,18 +82,31 @@ class Configuration extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Configuration</h1>
-        <form className="configuration-form" onSubmit={this.handleSubmit}>
-          <input type="checkbox" name="notifications" checked={this.state.enable_notifications} onChange={this.updateState} />Allow notifications
-          <input type="checkbox" name="poll" checked={this.state.enable_polling} onChange={this.updateState} />Allow lobby to poll in the background
-          <input type="radio" name="row-style-big" checked={this.state.row_style.big} onChange={this.updateState} />Big rows
-          <input type="radio" name="row-style-compact" checked={this.state.row_style.compact} onChange={this.updateState} />Compact rows
-          <hr />
-          <label>Poll Interval</label>
-          <input type="range" name="interval" min="2" max="60" value={this.state.poll_interval} onChange={this.updateState} />{ this.state.poll_interval } seconds
-          <input type="submit" value="Post" />
-        </form>
+      <div className="full-wrapper">
+        <div className="full-center">
+          <form className="configuration-form" onSubmit={this.handleSubmit}>
+
+            <div className="fieldset">
+              <label htmlFor="notifications">Allow notifications</label>
+              <input type="checkbox" className="checkbox" name="notifications" checked={this.state.enable_notifications} onChange={this.updateState} />
+            </div>
+
+            <div className="fieldset">
+              <label htmlFor="poll">Enable background polling</label>
+              <input type="checkbox" className="checkbox" name="poll" checked={this.state.enable_polling} onChange={this.updateState} />
+            </div>
+
+            <hr />
+
+            <div className="fieldset">
+              <label htmlFor="notifications" className="newline-label">Poll Interval</label>
+              <input type="range" className="input-range" name="interval" min="10" max="60" value={this.state.poll_interval} onChange={this.updateState} />
+              <p>{ this.state.poll_interval } seconds</p>
+            </div>
+
+            <input className="submit" type="submit" value="Save settings" />
+          </form>
+        </div>
       </div>
     );
   }
