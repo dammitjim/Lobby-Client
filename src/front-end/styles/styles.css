@@ -2203,7 +2203,7 @@ body {
     overflow: hidden;
     width: 100%; }
   body .content {
-    height: 572px;
+    height: 582px;
     overflow-y: scroll; }
 
 html,
@@ -2303,52 +2303,6 @@ body {
     width: 100%; }
     .configuration-form .submit:hover {
       background: #4e3380; }
-
-footer {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: white;
-  position: relative;
-  z-index: 999; }
-  footer::after {
-    clear: both;
-    content: "";
-    display: block; }
-  footer .footer-col-8 {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 65.88078%;
-    margin-right: 0;
-    text-align: center; }
-    footer .footer-col-8:last-child {
-      margin-right: 0; }
-    footer .footer-col-8 a {
-      background-color: #6441a5;
-      color: white;
-      cursor: pointer;
-      display: block;
-      font-weight: bold;
-      padding: 5px 0;
-      width: 100%; }
-  footer .footer-col-4 {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 31.76157%;
-    margin-right: 0;
-    text-align: center; }
-    footer .footer-col-4:last-child {
-      margin-right: 0; }
-    footer .footer-col-4 a {
-      background-color: #6441a5;
-      color: white;
-      cursor: pointer;
-      display: block;
-      font-weight: bold;
-      padding: 5px 0;
-      width: 100%; }
 
 nav {
   background: #6441a5;
@@ -2479,7 +2433,7 @@ nav {
 .table-header, footer {
   background: #432b6e;
   display: block;
-  height: 50px;
+  height: 40px;
   position: relative;
   text-align: center;
   top: 0;
@@ -2493,8 +2447,8 @@ nav {
     display: block;
     font-size: 14px;
     font-weight: bold;
-    height: 50px;
-    padding-top: 15px;
+    height: 40px;
+    padding-top: 12px;
     text-align: center; }
     .table-header .refresh span,
     .table-header .link-out span, footer .refresh span,
@@ -2504,7 +2458,7 @@ nav {
     .table-header .refresh i,
     .table-header .link-out i, footer .refresh i,
     footer .link-out i {
-      font-size: 1.5em; }
+      font-size: 1.3em; }
     .table-header .refresh:hover,
     .table-header .link-out:hover, footer .refresh:hover,
     footer .link-out:hover {
@@ -2519,19 +2473,3 @@ nav {
     clear: both;
     content: "";
     display: block; }
-  .table-header #back-to-top, footer #back-to-top {
-    background: linear-gradient(to bottom, rgba(250, 250, 250, 0.65) 0%, transparent 100%);
-    display: none;
-    height: 20px;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 1s;
-    width: 100%;
-    z-index: 101; }
-    .table-header #back-to-top:hover, footer #back-to-top:hover {
-      opacity: .25; }
-    .table-header #back-to-top.active, footer #back-to-top.active {
-      cursor: pointer;
-      display: block; }
