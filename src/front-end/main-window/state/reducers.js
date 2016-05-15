@@ -29,11 +29,11 @@ export function streams(state = { followed: [], channels: [], games: [] }, actio
  * @param  Object action - action data
  * @return Object state - current application state
  */
-export function header(state = { header: {} }, action) {
+export function header(state = { options: {} }, action) {
   switch (action.type) {
     case 'CHANGED_VIEW':
       return Object.assign({}, state, {
-        header: action.value
+        options: action.value
       });
     default:
       return state;

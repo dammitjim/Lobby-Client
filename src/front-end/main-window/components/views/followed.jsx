@@ -1,6 +1,9 @@
 import React from 'react';
+
 import Table from './partials/table';
 import Login from './partials/login';
+import Header from './partials/header';
+
 import { connect } from 'react-redux';
 import { viewChangedAction } from '../../state/actions';
 import { refreshFollowed } from '../../util/refresh';
@@ -8,11 +11,11 @@ import { refreshFollowed } from '../../util/refresh';
 const displayName = 'Followed Streams';
 const propTypes = {
   store: React.PropTypes.object.isRequired,
+  header: React.PropTypes.object.isRequired,
   dispatch: React.PropTypes.func.isRequired
 };
 
 class Followed extends React.Component {
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(viewChangedAction({
@@ -25,6 +28,7 @@ class Followed extends React.Component {
     if (this.props.store.config.config.authenticated) {
       return (
         <div className="content" id="content">
+          <Header />
           <Table data={ this.props.store.streams.followed }/>
         </div>
       );
@@ -44,7 +48,8 @@ Followed.displayName = displayName;
 
 const mapStateToProps = (state) => {
   return {
-    store: state
+    store: state,
+    header: state.header
   };
 };
 

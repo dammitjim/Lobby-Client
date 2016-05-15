@@ -1,6 +1,9 @@
 import React from 'react';
 import Electron from 'electron';
+
 import Table from './partials/table';
+import Header from './partials/header';
+
 import { viewChangedAction } from '../../state/actions';
 import { refreshChannels } from '../../util/refresh';
 
@@ -30,6 +33,7 @@ class Channels extends React.Component {
   render() {
     return (
       <div className="content" id="content">
+        <Header />
         <Table data={ this.props.store.streams.channels } />
         <a className="all-channels" onClick={ this.openChannels }>View more.</a>
       </div>

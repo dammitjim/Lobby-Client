@@ -28,25 +28,10 @@ class UI extends React.Component {
           </ul>
         </nav>
         { this.props.children }
-        <footer>
-          <span className="company-slogan">Made by Jim in Bristol</span>
-        </footer>
       </div>
     );
   }
 }
-
-// let refresh = {};
-// if (this.props.store.header.action !== null) {
-//   refresh = <a className="refresh" onClick={ this.props.store.header.action }>R</a>;
-// } else {
-//   refresh = '';
-// }
-// <section className="table-header" id="table-header">
-//     <h2>{ this.props.store.header.title }</h2>
-//     { refresh }
-//     <div className="clearfix"></div>
-//   </section>
 UI.displayName = displayName;
 UI.propTypes = propTypes;
 
