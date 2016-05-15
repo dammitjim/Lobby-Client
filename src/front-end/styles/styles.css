@@ -2203,8 +2203,9 @@ body {
     overflow: hidden;
     width: 100%; }
   body .content {
-    height: 582px;
-    overflow-y: scroll; }
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 45px; }
 
 html,
 body {
@@ -2303,6 +2304,12 @@ body {
     width: 100%; }
     .configuration-form .submit:hover {
       background: #4e3380; }
+
+footer {
+  bottom: 0;
+  opacity: .98;
+  position: absolute;
+  z-index: 99; }
 
 nav {
   background: #6441a5;
@@ -2434,9 +2441,7 @@ nav {
   background: #432b6e;
   display: block;
   height: 40px;
-  position: relative;
   text-align: center;
-  top: 0;
   width: 100%;
   z-index: 100; }
   .table-header .refresh,

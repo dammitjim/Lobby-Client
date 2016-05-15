@@ -39,9 +39,10 @@ body {
   }
 
   .content {
-    // height: 100%;
-    height: 582px;
+    height: 100%;
+    // height: 582px;
     overflow-y: scroll;
+    padding-bottom: 45px;
   }
 }
 
