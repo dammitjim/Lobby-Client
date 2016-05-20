@@ -6,6 +6,7 @@ import { initiateAuthFlow } from './api/auth';
 import * as menuactions from './menu/actions';
 import log from './util/logging';
 import { reloadConfig, saveConfig } from './config';
+import options from './options';
 
 // Process control
 const ipcMain = electron.ipcMain;
@@ -127,7 +128,9 @@ export default function() {
 
   bar.on('after-create-window', () => {
     menuactions.getConfiguration(bar);
-    bar.window.openDevTools({ detach: true });
+    if (options.devTools) {
+      bar.window.openDevTools({ detach: true });
+    }
   });
 
   bar.on('after-close', () => {
