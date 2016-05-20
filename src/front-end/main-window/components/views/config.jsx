@@ -84,6 +84,10 @@ class Configuration extends React.Component {
     ipcRenderer.send('sign-out');
   }
 
+  exit() {
+    ipcRenderer.send('exit');
+  }
+
   render() {
     let signOutButton = '';
     if (this.state.authenticated) {
@@ -116,6 +120,7 @@ class Configuration extends React.Component {
             <input className="submit" type="submit" value="Save settings" />
           </form>
           { signOutButton }
+          <button className="exit" onClick={this.exit}>Quit</button>
         </div>
       </div>
     );

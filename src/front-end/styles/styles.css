@@ -2305,14 +2305,21 @@ body {
     .configuration-form .submit:hover {
       background: #4e3380; }
 
-.sign-out {
-  background-color: #a40802;
+button {
   border: 0;
   color: white;
   cursor: pointer;
   margin-top: 30px;
   padding: 10px 40px;
   width: 100%; }
+
+.exit {
+  background-color: black; }
+  .exit:hover {
+    background: #1a1a1a; }
+
+.sign-out {
+  background-color: #a40802; }
   .sign-out:hover {
     background: #720601; }
 

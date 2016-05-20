@@ -65,6 +65,10 @@ ipcMain.on('sign-out', (event) => {
   menuactions.signOut(bar);
 });
 
+ipcMain.on('exit', (event) => {
+  menuactions.exit(bar);
+});
+
 electron.app.on('ready', () => {
   // Stop polling on suspend
   electron.powerMonitor.on('suspend', () => {

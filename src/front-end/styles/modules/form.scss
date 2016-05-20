@@ -43,14 +43,25 @@
   }
 }
 
-.sign-out {
-  background-color: $red;
+button {
   border: 0;
   color: white;
   cursor: pointer;
   margin-top: 30px;
   padding: 10px 40px;
   width: 100%;
+}
+
+.exit {
+  background-color: black;
+
+  &:hover {
+    background: lighten(black, 10%);
+  }
+}
+
+.sign-out {
+  background-color: $red;
 
   &:hover {
     background: darken($red, 10%);

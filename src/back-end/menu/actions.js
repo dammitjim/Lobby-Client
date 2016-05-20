@@ -1,3 +1,5 @@
+import electron from 'electron';
+
 import { authenticate } from '../util/middlewares';
 import { notify } from '../util/notifications';
 import log from '../util/logging';
@@ -113,4 +115,9 @@ export function signOut(target) {
   if (targetAvailable(target)) {
     target.window.webContents.send('reloaded-config', JSON.stringify(conf));
   }
+}
+
+export function exit(target) {
+  target.window.close();
+  electron.app.quit();
 }

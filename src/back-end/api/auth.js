@@ -63,6 +63,7 @@ export function initiateAuthFlow(callback) {
       if (url.slice(0, 16) === 'http://localhost') {
         // Gets authentication token
         handleAuthCallback(url, (data, err) => {
+          console.log(data);
           if (err) {
             log.error(err);
           } else {
